@@ -15,3 +15,5 @@ kind: Kustomization
 namespace: argocd
 resources:
 - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.2.28
+patches:
+  - path: elite-cluster.yaml
