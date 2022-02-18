@@ -1,0 +1,1 @@
+{"appName":"prometheus","userGivenName":"prometheus","destNamespace":"default","destServer":"https://kubernetes.default.svc","srcPath":"apps/prometheus/overlays/elite-cluster","srcRepoURL":"https://github.com/todaywasawesome/elite-cluster.git","srcTargetRevision":"","labels":null}
