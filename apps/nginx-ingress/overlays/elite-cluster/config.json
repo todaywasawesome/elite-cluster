@@ -1,0 +1,1 @@
+{"appName":"nginx-ingress","userGivenName":"nginx-ingress","destNamespace":"default","destServer":"https://kubernetes.default.svc","srcPath":"apps/nginx-ingress/overlays/elite-cluster","srcRepoURL":"https://github.com/todaywasawesome/elite-cluster.git","srcTargetRevision":"","labels":null}
