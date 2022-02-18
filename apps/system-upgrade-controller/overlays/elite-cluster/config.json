@@ -1,0 +1,1 @@
+{"appName":"system-upgrade-controller","userGivenName":"system-upgrade-controller","destNamespace":"default","destServer":"https://kubernetes.default.svc","srcPath":"apps/system-upgrade-controller/overlays/elite-cluster","srcRepoURL":"https://github.com/todaywasawesome/elite-cluster.git","srcTargetRevision":"","labels":null}
