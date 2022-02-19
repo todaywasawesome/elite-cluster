@@ -1,0 +1,1 @@
+{"appName":"demo-app","userGivenName":"demo-app","destNamespace":"default","destServer":"https://kubernetes.default.svc","srcPath":"apps/demo-app/overlays/elite-cluster","srcRepoURL":"https://github.com/todaywasawesome/elite-cluster.git","srcTargetRevision":"","labels":null}
