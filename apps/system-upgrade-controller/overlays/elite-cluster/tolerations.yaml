@@ -5,7 +5,7 @@ metadata:
   namespace: system-upgrade
 spec:
   toleration:
-  - key: k3s-controlplane
+  - key: "k3s-controlplane"
     operator: "Equal"
     value: "true"
     effect: "NoSchedule"
