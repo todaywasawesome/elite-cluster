@@ -4,8 +4,10 @@ metadata:
   name: system-upgrade-controller
   namespace: system-upgrade
 spec:
-  toleration:
-  - key: "k3s-controlplane"
-    operator: "Equal"
-    value: "true"
-    effect: "NoSchedule"
+  template:
+    spec:
+      tolerations:
+      - key: "k3s-controlplane"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
