@@ -6,7 +6,5 @@
   "srcPath": "apps/v-rising-server/overlays/elite-cluster",
   "srcRepoURL": "https://github.com/todaywasawesome/elite-cluster.git",
   "srcTargetRevision": "",
-  "labels": null,
-  "exclude": "",
-  "include": ""
+  "labels":null
 }
