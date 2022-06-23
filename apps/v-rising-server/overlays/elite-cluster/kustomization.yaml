@@ -8,4 +8,4 @@ patches:
 configMapGenerator:
 - name: v-rising-config
   files:
-  - ./v-rising-settings.json
+  - ./ServerHostSettings.json
