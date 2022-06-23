@@ -1,10 +1,1 @@
-{
-  "appName": "v-rising-server",
-  "userGivenName": "v-rising-server",
-  "destNamespace": "default",
-  "destServer": "https://kubernetes.default.svc",
-  "srcPath": "apps/v-rising-server/overlays/elite-cluster",
-  "srcRepoURL": "https://github.com/todaywasawesome/elite-cluster.git",
-  "srcTargetRevision": "",
-  "labels":null
-}
+{"appName": "v-rising-server","userGivenName": "v-rising-server","destNamespace": "default","destServer": "https://kubernetes.default.svc","srcPath": "apps/v-rising-server/overlays/elite-cluster","srcRepoURL": "https://github.com/todaywasawesome/elite-cluster.git","srcTargetRevision": "","labels":null}
