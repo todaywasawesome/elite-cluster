@@ -1,0 +1,4 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- https://github.com/todaywasawesome/V-Rising-Kuberentes/deploy/kustomize/?ref=alpha
