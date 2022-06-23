@@ -1,0 +1,18 @@
+{
+      "Name":"TestEliteServer",
+      "Description":"Hey look! It's a server description on K8s! How delightful.",
+      "Port": 9876,
+      "QueryPort": 9877,
+      "MaxConnectedUsers":40,
+      "MaxConnectedAdmins":4,
+      "ServerFps": 30,
+      "SaveName": "EliteServer",
+      "Password": "password123",
+      "Secure": true,
+      "ListOnMasterServer": true,
+      "AutoSaveCount": 50,
+      "AutoSaveInterval": 600,
+      "GameSettingsPreset": "",
+      "AdminOnlyDebugEvents": true,
+      "DisableDebugEvents": false
+}
