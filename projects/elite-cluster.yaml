@@ -62,7 +62,6 @@ spec:
             directory:
               exclude: '{{ exclude }}'
               include: '{{ include }}'
-              jsonnet: {}
               recurse: true
             repoURL: ""
   syncPolicy: {}
