@@ -4,6 +4,7 @@ resources:
 - ../../base
 patches:
 - storageclass.yaml
+- loadbalancer.yaml
 
 configMapGenerator:
 - name: v-rising-config
