@@ -3,4 +3,4 @@ kind: Service
 metadata:
   name: vrising
 spec:
-  type: LoadBalancer
+  type: NodePort
