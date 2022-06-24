@@ -1,8 +1,8 @@
 {
       "Name":"TestEliteServer",
       "Description":"Hey look! It's a server description on K8s! How delightful.",
-      "Port": 9876,
-      "QueryPort": 9877,
+      "Port": 27015,
+      "QueryPort": 27016,
       "MaxConnectedUsers":40,
       "MaxConnectedAdmins":4,
       "ServerFps": 30,
