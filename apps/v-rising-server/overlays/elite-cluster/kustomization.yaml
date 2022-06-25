@@ -6,7 +6,11 @@ patches:
 - storageclass.yaml
 - loadbalancer.yaml
 
-configMapGenerator:
-- name: v-rising-config
-  files:
-  - ./ServerHostSettings.json
+# Manually create configmaps
+# configMapGenerator:
+# - name: vrising-ServerHostSettings
+#   files:
+#   - ServerHostSettings.json
+# - name: vrising-ServerGameSettings
+#   files:
+#   - ServerGameSettings.json

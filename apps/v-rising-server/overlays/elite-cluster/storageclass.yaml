@@ -4,3 +4,15 @@ metadata:
   name: vrising-claim0
 spec:
   storageClassName: longhorn
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vrising
+spec:
+  template:
+    spec:
+      volumes:
+      - name: vrising-claim0
+        persistentVolumeClaim:
+          claimName: vrising
