@@ -4,15 +4,30 @@ metadata:
   name: vrising-claim0
 spec:
   storageClassName: longhorn
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: vrising
-spec:
-  template:
-    spec:
-      volumes:
-      - name: vrising-claim0
-        persistentVolumeClaim:
-          claimName: vrising
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: vrising
+# spec:
+#   template:
+#     spec:
+#       # containers:
+#       # - name: vrising-server
+#       #   volumeMounts:
+#       #   - mountPath: /data/Settings
+#       #     name: vrising-serverhostsettings
+#       #     subPath: ServerHostSettings.json
+#       #   - mountPath: /data/Settings
+#       #     name: vrising-servergamesettings
+#       #     subPath: ServerGameSettings.json
+#       volumes:
+#       - name: vrising-claim0
+#         persistentVolumeClaim:
+#           claimName: vrising
+#       # - configMap:
+#       #     name: vrising-serverhostsettings
+#       #   name: vrising-serverhostsettings
+#       # - configMap:
+#       #     name: vrising-servergamesettings
+#       #   name: vrising-servergamesettings

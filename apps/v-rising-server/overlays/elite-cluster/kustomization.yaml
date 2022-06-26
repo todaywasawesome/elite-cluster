@@ -3,8 +3,16 @@ kind: Kustomization
 resources:
 - ../../base
 patches:
-- storageclass.yaml
 - loadbalancer.yaml
+# - storageclass.yaml
+# - path: storagename.json
+# target:
+#     kind: Deployment
+#     name: vrising
+#   patch: 
+#     - op: replace
+#       path: "/spec/template/spec/volumes/vrising-claim0/persistentVolumeClaim"
+#       value: vrising
 
 # Manually create configmaps
 # configMapGenerator:
