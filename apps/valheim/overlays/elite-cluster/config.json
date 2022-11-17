@@ -1,0 +1,10 @@
+{
+   "appName":"valheim",
+   "userGivenName":"valheim",
+   "destNamespace":"valheim",
+   "destServer":"https://kubernetes.default.svc",
+   "srcPath":"apps/valheim/overlays/elite-cluster",
+   "srcRepoURL":"https://github.com/todaywasawesome/elite-cluster.git",
+   "srcTargetRevision":"",
+   "labels":null
+}
