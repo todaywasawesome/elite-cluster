@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+- name: valheim-k8s
+  releaseName: valheim-server
+  version: 1.1.0
+  repo: https://addyvan.github.io/valheim-k8s/
+  valuesFile: values.yaml
+  # includeCRDs: true
+  namespace: valheim
+  # valuesInline:
+  #   containerPort:
+  #     http: 81
+
+# resources:
+# - argocd-metrics-servicemonitor.yaml
+# - argocd-notifications-controller-metrics-servicemonitor.yaml
+# - argocd-repo-server-metrics-servicemonitor.yaml
+# - argocd-server-metrics-servicemonitor.yaml
+
+# patches:
+# - expose-service.yaml
