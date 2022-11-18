@@ -11,6 +11,11 @@ configMapGenerator:
       usernameSecret:
         key: git_username
         name: autopilot-secret
+  - |
+    configManagementPlugins=- name: kustomize-build-with-helm
+        generate:
+          command: [ "sh", "-c" ]
+          args: [ "kustomize build --enable-helm" ]
   name: argocd-cm
 kind: Kustomization
 namespace: argocd
