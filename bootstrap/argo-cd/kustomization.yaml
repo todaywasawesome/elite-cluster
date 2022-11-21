@@ -16,9 +16,9 @@ configMapGenerator:
         name: autopilot-secret
   - |
     configManagementPlugins=- name: kustomize-build-with-helm
-        generate:
-          command: [ "sh", "-c" ]
-          args: [ "kustomize build --enable-helm" ]
+      generate:
+        command: [ "sh", "-c" ]
+        args: [ "kustomize build --enable-helm" ]
 kind: Kustomization
 namespace: argocd
 resources:
