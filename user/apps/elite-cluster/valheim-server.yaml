@@ -9,7 +9,7 @@ spec:
   project: elite-cluster
   source:
     repoURL: 'https://github.com/todaywasawesome/elite-cluster.git'
-    path: apps/valheim/overlays/elite-cluster
+    path: users/manifests/valheim/elite-cluster
     plugin: 
       name: kustomize-build-with-helm
   destination:
