@@ -1,7 +1,0 @@
-apiVersion: builtin
-kind: ConfigMapGenerator
-behavior: merge
-metadata:
-  name: argocd-cm
-literals:
-  - "kustomize.buildOptions= --enable-helm"

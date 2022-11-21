@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: valheim
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: elite-cluster
+  source:
+    repoURL: 'https://github.com/todaywasawesome/elite-cluster.git'
+    path: apps/valheim/overlays/elite-cluster
+    plugin: 
+      name: kustomize-build-with-helm
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: valheim
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: true
+  ignoreDifferences:
+    - group: argoproj.io
+      kind: Application
+      jsonPointers:
+        - /status
