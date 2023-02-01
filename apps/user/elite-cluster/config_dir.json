@@ -1,0 +1,13 @@
+{
+  "appName": "user",
+  "userGivenName": "user",
+  "destNamespace": "default",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "user/apps/elite-cluster",
+  "srcRepoURL": "https://github.com/todaywasawesome/elite-cluster.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null,
+  "exclude": "",
+  "include": ""
+}
