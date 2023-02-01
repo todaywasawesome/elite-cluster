@@ -1,1 +1,1 @@
-{"appName":"metallb","userGivenName":"metallb","destNamespace":"default","destServer":"https://kubernetes.default.svc","srcPath":"apps/metallb/v1.0/","srcRepoURL":"https://github.com/todaywasawesome/elite-cluster-apps.git","srcTargetRevision":"","labels":null,"exclude":"","include":""}
+{"appName":"metallb","userGivenName":"metallb","destNamespace":"default","destServer":"https://kubernetes.default.svc","srcPath":"apps/metallb/0.13.7/","srcRepoURL":"https://github.com/todaywasawesome/elite-cluster-apps.git","srcTargetRevision":"","labels":null,"exclude":"","include":""}
