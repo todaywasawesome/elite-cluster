@@ -1,7 +1,7 @@
 {
   "appName": "user",
   "userGivenName": "user",
-  "destNamespace": "default",
+  "destNamespace": "argocd",
   "destServer": "https://kubernetes.default.svc",
   "srcPath": "user/apps/elite-cluster",
   "srcRepoURL": "https://github.com/todaywasawesome/elite-cluster.git",
