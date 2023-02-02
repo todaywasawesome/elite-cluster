@@ -6,3 +6,16 @@ resources:
 
 # patches:
 # - 
+
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: radarr-deployment
+  spec:
+    template:
+      spec:
+        containers:
+        - name: radarr
+          image: linuxserver/radarr:4.3.2
