@@ -1,0 +1,13 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: kube-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 10.0.0.20-10.0.0.60
