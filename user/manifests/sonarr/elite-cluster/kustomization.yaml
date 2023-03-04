@@ -18,4 +18,4 @@ patchesStrategicMerge:
       spec:
         containers:
         - name: sonarr
-          image: linuxserver/radarr:3.0.9
+          image: linuxserver/sonarr:3.0.9
