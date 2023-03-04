@@ -6,7 +6,7 @@ metadata:
   name: config
 data:
   config: |
-    address-pools:
+    ipAddressPools:
     - name: default
       protocol: layer2
       addresses:
