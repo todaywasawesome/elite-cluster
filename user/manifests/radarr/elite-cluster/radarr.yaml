@@ -43,7 +43,7 @@
       volumes:
         - name: radarr-config
           persistentVolumeClaim:
-            claimName: radarr
+            claimName: radarr-config-lh
         - name: radarr-downloads
           persistentVolumeClaim:
             claimName: download
