@@ -7,7 +7,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: kube-system
+    namespace: metallb-system
     server: 'https://kubernetes.default.svc'
   source:
     path: user/manifests/metallb/elite-cluster
