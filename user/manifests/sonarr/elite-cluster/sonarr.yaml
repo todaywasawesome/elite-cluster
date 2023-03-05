@@ -6,7 +6,7 @@
    labels:
      app: sonarr
  spec:
-   replicas: 0
+   replicas: 1
    selector:
       matchLabels:
         app: sonarr
@@ -34,7 +34,7 @@
       volumes:
         - name: sonarr-config
           persistentVolumeClaim:
-            claimName: sonarr-config
+            claimName: sonarr
         - name: sonarr-tv
           persistentVolumeClaim:
             claimName: media
