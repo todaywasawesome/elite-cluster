@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - ../../base
 patches:
-- exposeservice.yaml
+- path: exposeservice.yaml

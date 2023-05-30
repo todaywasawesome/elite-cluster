@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - ../../base
 patches:
-- ipaddress.yaml
+- path: ipaddress.yaml
