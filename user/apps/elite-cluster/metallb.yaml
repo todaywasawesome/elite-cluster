@@ -6,7 +6,6 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    name: ''
     namespace: metallb-system
     server: 'https://kubernetes.default.svc'
   source:
