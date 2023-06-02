@@ -15,6 +15,7 @@ spec:
   project: elite-cluster
   syncPolicy:
     automated:
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
