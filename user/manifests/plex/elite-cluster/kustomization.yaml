@@ -1,0 +1,16 @@
+# kustomization.yml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: plex-system
+
+resources:
+- clusterplex.yaml
+
+patches:
+# - patch: |-
+#     apiVersion: v1
+#     kind: ConfigMap
+#     metadata:
+#       name: clusterplex-pms-config
+#     data:
+#       TZ: America/Denver
