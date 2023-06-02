@@ -81,39 +81,37 @@ spec:
 #   # specify your storage class
 #   storageClassName: longhorn
 # ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: clusterplex-media
-# spec:
-#   persistentVolumeReclaimPolicy: Retain
-#   capacity:
-#     storage: 1000Gi
-#   accessModes:
-#     - ReadWriteOnce
-#     - ReadOnlyMany
-#     - ReadWriteMany
-#   storageClassName: ""
-#   nfs:
-#     path: /YourPath     # The path to your media
-#     server: 0.0.0.0     # Your NFS server with Media
-#   mountOptions:
-#     - vers=4
-#     - minorversion=1
-#     - noac
-# ---
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: clusterplex-media-pvc
-# spec:
-#   volumeName: clusterplex-media
-#   storageClassName: ""
-#   accessModes:
-#     - ReadWriteMany
-#   resources:
-#     requests:
-#       storage: 1Gi
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: media
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 14000Gi
+  accessModes:
+    - ReadWriteMany
+  volumeMode: Filesystem
+  nfs:
+    path: /mnt/Media/kube/Media
+    server: 10.0.0.75
+  mountOptions:
+    - vers=4
+    - minorversion=1
+    - noac
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: clusterplex-media-pvc
+spec:
+  volumeName: clusterplex-media
+  storageClassName: ""
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
