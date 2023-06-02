@@ -84,7 +84,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: media
+  name: plex-media
 spec:
   persistentVolumeReclaimPolicy: Retain
   capacity:
@@ -195,13 +195,13 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: "media"
+          claimName: "plex-media"
       - name: config
         persistentVolumeClaim:
           claimName: "clusterplex-config-pvc"
       - name: transcode
         persistentVolumeClaim:
-          claimName: "media"
+          claimName: "plex-media"
 ---
 apiVersion: v1
 kind: Service
@@ -376,10 +376,10 @@ spec:
       volumes:
       - name: data
         persistentVolumeClaim:
-          claimName: "media"
+          claimName: "plex-media"
       - name: transcode
         persistentVolumeClaim:
-          claimName: "media"
+          claimName: "plex-media"
   volumeClaimTemplates:
     - metadata:
         name: codecs
