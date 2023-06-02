@@ -106,12 +106,11 @@ metadata:
   name: clusterplex-media-pvc
 spec:
   volumeName: clusterplex-media
-  storageClassName: ""
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 1Gi
+      storage: 14000Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
