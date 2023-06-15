@@ -15,10 +15,10 @@ spec:
     plugin: 
       name: kustomize-build-with-helm
   project: elite-cluster
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
+  #   syncOptions:
+  #     - CreateNamespace=true
+  #     - ServerSideApply=true
