@@ -1,0 +1,7 @@
+# kustomization.yml
+namespace: intel-gpu-plugin
+
+resources:
+- https://github.com/intel/intel-device-plugins-for-kubernetes/deployments/gpu_plugin?ref=v0.27.0
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
