@@ -13,10 +13,10 @@ spec:
     repoURL: 'https://github.com/todaywasawesome/elite-cluster'
     targetRevision: HEAD
   project: elite-cluster
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
-      - ServerSideApply=true
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: false
+  #   syncOptions:
+  #     - CreateNamespace=true
+  #     - ServerSideApply=true
