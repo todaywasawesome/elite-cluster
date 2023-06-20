@@ -14,6 +14,7 @@ data:
   ORCHESTRATOR_URL: 'http://clusterplex-orchestrator:3500'
   PMS_SERVICE: "clusterplex-pms"
   PMS_PORT: "32400"
+  PMS_IP: "10.0.0.26"
   TRANSCODER_VERBOSE: '1'
   TRANSCODE_OPERATING_MODE: both
   LOCAL_RELAY_ENABLED: '1'
@@ -48,6 +49,7 @@ data:
   LISTENING_PORT: '3501'
   STAT_CPU_INTERVAL: '10000'
   EAE_SUPPORT: '1'
+  FFMPEG_HWACCEL: 'vaapi'
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -103,11 +105,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: clusterplex-media-pvc
+  name: plex-media
 spec:
   volumeName: plex-media
   accessModes:
     - ReadWriteMany
+  storageClassName: ""
   resources:
     requests:
       storage: 14000Gi
@@ -121,6 +124,8 @@ metadata:
     app.kubernetes.io/part-of: clusterplex
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app.kubernetes.io/name: clusterplex-pms
@@ -152,21 +157,21 @@ spec:
         startupProbe:
           httpGet:
             path: /identity
-            scheme: HTTPS
+            scheme: HTTP
             port: 32400
           failureThreshold: 30
           periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /identity
-            scheme: HTTPS
+            scheme: HTTP
             port: 32400
           initialDelaySeconds: 15
           timeoutSeconds: 5
         livenessProbe:
           httpGet:
             path: /identity
-            scheme: HTTPS
+            scheme: HTTP
             port: 32400
           initialDelaySeconds: 10
           timeoutSeconds: 10
@@ -183,15 +188,14 @@ spec:
           mountPath: /data
         - name: config
           mountPath: /config
-        - name: transcode
+        - name: data
           mountPath: /transcode
         resources:          # adapt requests and limits to your needs
           requests:
             cpu: 300m
             memory: 256Mi
           limits:
-            cpu: 2000m
-            memory: 512Mi
+            gpu.intel.com/i915: 1
       volumes:
       - name: data
         persistentVolumeClaim:
@@ -199,9 +203,9 @@ spec:
       - name: config
         persistentVolumeClaim:
           claimName: "clusterplex-config-pvc"
-      - name: transcode
-        persistentVolumeClaim:
-          claimName: "plex-media"
+      # - name: transcode
+      #   persistentVolumeClaim:
+      #     claimName: "plex-media"
 ---
 apiVersion: v1
 kind: Service
@@ -211,7 +215,7 @@ metadata:
     app.kubernetes.io/name: clusterplex-pms
     app.kubernetes.io/part-of: clusterplex
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - name: pms
       port: 32400
@@ -275,9 +279,6 @@ spec:
           requests:
             cpu: 200m
             memory: 32Mi
-          limits:
-            cpu: 500m
-            memory: 64Mi
 ---
 apiVersion: v1
 kind: Service
@@ -364,22 +365,21 @@ spec:
           mountPath: /data
         - name: codecs
           mountPath: /codecs
-        - name: transcode
+        - name: data
           mountPath: /transcode
         resources:              # adapt requests and limits to your needs
           requests:
             cpu: 500m
             memory: 200Mi
           limits:
-            cpu: 3000m
-            memory: 800Mi
+            gpu.intel.com/i915: 1
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: "plex-media"
-      - name: transcode
-        persistentVolumeClaim:
-          claimName: "plex-media"
+      # - name: transcode
+      #   persistentVolumeClaim:
+      #     claimName: "plex-media"
   volumeClaimTemplates:
     - metadata:
         name: codecs
