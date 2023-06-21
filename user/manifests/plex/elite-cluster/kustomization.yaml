@@ -7,10 +7,36 @@ resources:
 - clusterplex.yaml
 
 patches:
-# - patch: |-
-#     apiVersion: v1
-#     kind: ConfigMap
-#     metadata:
-#       name: clusterplex-pms-config
-#     data:
-#       TZ: America/Denver
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: clusterplex-pms
+    spec:
+      template:
+        spec:
+          containers:
+          - name: plex
+            image: lscr.io/linuxserver/plex:version-1.32.4.7195-7c8f9d3b6
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: clusterplex-orchestrator
+    spec:
+      template:
+        spec:
+          containers:
+          - name: plex
+            image: pabloromeo/clusterplex_orchestrator:1.4.4
+- patch: |-
+    apiVersion: apps/v1
+    kind: StatefulSet
+    metadata:
+      name: clusterplex-worker
+    spec:
+      template:
+        spec:
+          containers:
+          - name: plex-worker
+            image: lscr.io/linuxserver/plex:version-1.32.4.7195-7c8f9d3b6
