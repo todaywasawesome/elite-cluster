@@ -35,6 +35,7 @@ patches:
     metadata:
       name: clusterplex-worker
     spec:
+      replicas: 3
       template:
         spec:
           containers:
