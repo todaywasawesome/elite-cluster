@@ -16,6 +16,9 @@ configMapGenerator:
         name: autopilot-secret
   - |
     configManagementPlugins=- name: kustomize-build-with-helm
+      init:
+        command: ["/bin/sh", "-c"]
+        args: ["helm dependency build"]
       generate:
         command: [ "sh", "-c" ]
         args: [ "kustomize build --enable-helm" ]
