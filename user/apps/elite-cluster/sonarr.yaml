@@ -17,9 +17,7 @@ spec:
       name: kustomize-build-with-helm
   project: elite-cluster
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    automated: null
     syncOptions:
       - CreateNamespace=true
       - ServerSideApply=true
