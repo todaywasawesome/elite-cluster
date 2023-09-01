@@ -26,8 +26,17 @@ kind: Kustomization
 namespace: argocd
 resources:
 - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.15
+- kustomize-with-helm.yaml
 patches:
 - path: exposeservice.yaml
+- path: kustomize-with-helm.sidecar.yaml
+# - target:
+#     kind: Depoyment
+#     name: argocd
+#   patch: |
+#     - op: add
+#       path: 
+
 # - exposeservice.yaml
 # generators:
 # - kustomize-buildoptions.yaml
