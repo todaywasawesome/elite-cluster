@@ -12,7 +12,7 @@ spec:
   source:
     path: ''
     repoURL: 'https://charts.longhorn.io'
-    targetRevision: 1.5.1
+    targetRevision: 1.4.3
     chart: longhorn
   sources: []
   project: elite-cluster
