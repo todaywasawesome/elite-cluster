@@ -10,16 +10,14 @@ spec:
     namespace: longhorn-system
     server: 'https://kubernetes.default.svc'
   source:
-    path: user/manifests/longhorn/elite-cluster
-    repoURL: 'https://github.com/todaywasawesome/elite-cluster'
-    targetRevision: HEAD
-    plugin: 
-      name: kustomize-build-with-helm
+    path: ''
+    repoURL: 'https://charts.longhorn.io'
+    targetRevision: 1.5.1
+    chart: longhorn
+  sources: []
   project: elite-cluster
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    automated: null
     syncOptions:
       - CreateNamespace=true
-      - ServerSideApply=true
+      - PruneLast=true
