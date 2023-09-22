@@ -4,7 +4,7 @@ kind: Kustomization
 helmCharts:
 - name: longhorn
   releaseName: longhorn
-  version: 1.5.1
+  version: 1.4.3
   repo: https://charts.longhorn.io
   # valuesFile: values.yaml
   namespace: longhorn-system

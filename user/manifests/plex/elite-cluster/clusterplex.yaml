@@ -15,8 +15,8 @@ data:
   PMS_SERVICE: "clusterplex-pms"
   PMS_PORT: "32400"
   PMS_IP: "10.0.0.26"
-  TRANSCODER_VERBOSE: '1'
-  TRANSCODE_OPERATING_MODE: both
+  TRANSCODER_VERBOSE: '0'
+  TRANSCODE_OPERATING_MODE: local
   LOCAL_RELAY_ENABLED: '1'
   LOCAL_RELAY_PORT: "32499"
 ---
@@ -40,15 +40,16 @@ metadata:
     app.kubernetes.io/name: clusterplex-worker-config
     app.kubernetes.io/part-of: clusterplex
 data:
+  VERSION: docker
   TZ: America/Denver
   PGID: '1000'
   PUID: '1000'
-  VERSION: docker
   DOCKER_MODS: 'ghcr.io/pabloromeo/clusterplex_worker_dockermod:latest'
   ORCHESTRATOR_URL: 'http://clusterplex-orchestrator:3500'
   LISTENING_PORT: '3501'
   STAT_CPU_INTERVAL: '10000'
   EAE_SUPPORT: '1'
+  TRANSCODER_VERBOSE: '0'
   FFMPEG_HWACCEL: 'vaapi'
 ---
 apiVersion: v1
@@ -60,10 +61,10 @@ metadata:
     app.kubernetes.io/part-of: clusterplex
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
-      storage: "10Gi"
+      storage: "20Gi"
   # specify your storage class
   storageClassName: longhorn
 ---
@@ -196,6 +197,7 @@ spec:
             memory: 256Mi
           limits:
             gpu.intel.com/i915: 1
+            memory: 4Gi
       volumes:
       - name: data
         persistentVolumeClaim:
@@ -367,16 +369,23 @@ spec:
           mountPath: /codecs
         - name: data
           mountPath: /transcode
+        - name: config
+          mountPath: /configtemp
         resources:              # adapt requests and limits to your needs
           requests:
             cpu: 500m
-            memory: 200Mi
+            memory: 1Gi
           limits:
             gpu.intel.com/i915: 1
+            memory: 4Gi
       volumes:
       - name: data
         persistentVolumeClaim:
           claimName: "plex-media"
+      - name: config
+        persistentVolumeClaim:
+          claimName: "clusterplex-config-pvc"
+          readOnly: true
       # - name: transcode
       #   persistentVolumeClaim:
       #     claimName: "plex-media"
