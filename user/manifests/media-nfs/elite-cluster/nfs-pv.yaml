@@ -1,0 +1,201 @@
+# # Plex 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: plex-config
+  labels:
+    app: plex
+spec:
+  capacity:
+    storage: 400Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    # server: 10.0.0.76
+    # path: "/media/seagate/Config/Plex"
+    server: 192.168.1.157
+    path: "/mnt/Media/kube/Config/Plex"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-config
+spec:
+  selector:
+    matchLabels:
+      app: plex
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 400Gi
+---
+# Sabnzbd
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sab-config
+  labels:
+    app: sab
+spec:
+  capacity:
+    storage: 400Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    # server: 10.0.0.76
+    # path: "/media/seagate/Config/Sabnzbd"
+    server: 192.168.1.157
+    path: "/mnt/Media/kube/Config/Sabnzbd"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sab-config
+spec:
+  selector:
+    matchLabels:
+      app: sab
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 400Gi
+
+---
+# # Sonarr
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: sonarr-config
+  labels:
+    app: sonarr
+spec:
+  capacity:
+    storage: 400Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    # server: 10.0.0.76
+    # path: "/media/seagate/Config/Sonarr"
+    server: 192.168.1.157
+    path: "/mnt/Media/kube/Config/Sonarr"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sonarr-config
+spec:
+  selector:
+    matchLabels:
+      app: sonarr
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 400Gi
+
+---
+# Radarr
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: radarr-config
+  labels:
+    app: radarr
+spec:
+  capacity:
+    storage: 400Gi
+  accessModes:
+    - ReadWriteOnce
+  nfs:
+    # server: 10.0.0.76
+    # path: "/media/seagate/Config/Radarr"
+    server: 192.168.1.157
+    path: "/mnt/Media/kube/Config/Radarr"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: radarr-config
+spec:
+  selector:
+    matchLabels:
+      app: radarr
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 400Gi
+
+---
+#Media
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: media
+  labels:
+    app: media
+spec:
+  capacity:
+    storage: 7000Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    # server: 10.0.0.76
+    # path: "/media/seagate/Media"
+    server: 192.168.1.157
+    path: "/mnt/Media/kube/Media"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: media
+spec:
+  selector:
+    matchLabels:
+      app: media
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 7000Gi
+
+---
+# Downloads
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: download
+  labels:
+    app: download
+spec:
+  capacity:
+    storage: 7000Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    # server: 10.0.0.76
+    # path: "/media/seagate/Media/"
+    server: 192.168.1.157
+    path: "/mnt/Media/kube/Media"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: download
+spec:
+  selector:
+    matchLabels:
+      app: download
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 7000Gi

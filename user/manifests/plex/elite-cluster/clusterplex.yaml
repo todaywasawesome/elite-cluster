@@ -97,7 +97,7 @@ spec:
   volumeMode: Filesystem
   nfs:
     path: /mnt/Media/kube/Media
-    server: 10.0.0.75
+    server: 192.168.1.157
   mountOptions:
     - vers=4
     - minorversion=1
