@@ -1,0 +1,7 @@
+# kustomization.yml
+namespace: default
+
+resources:
+  - nfs-pv.yaml 
+  - download.yaml
+  - media.yaml

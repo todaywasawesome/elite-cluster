@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/bound-by-controller: "yes"
+  labels:
+    app: media
+  name: media
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 14000Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: media
+    namespace: default
+    resourceVersion: "552713"
+    uid: 0c90e4b2-655a-4689-98ce-32556da3714f
+  mountOptions:
+  - vers=4
+  - minorversion=1
+  - noac
+  nfs:
+    path: /mnt/Media/kube/Media
+    server: 192.168.1.157

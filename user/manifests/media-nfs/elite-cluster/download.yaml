@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/bound-by-controller: "yes"
+  labels:
+    app: download
+  name: download
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 7000Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: download
+    namespace: default
+    resourceVersion: "552708"
+    uid: 511715a8-154f-41b7-a877-5c1c68aefe71
+  nfs:
+    path: /mnt/Media/kube/Media
+    server: 192.168.1.157
