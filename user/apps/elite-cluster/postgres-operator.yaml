@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres-operator
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    name: ''
+    namespace: postgres-operator
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: user/manifests/postgres-operator/elite-cluster
+    repoURL: 'https://github.com/todaywasawesome/elite-cluster'
+    targetRevision: HEAD
+  project: elite-cluster
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    #   - ServerSideApply=true
