@@ -3,3 +3,15 @@ kind: Kustomization
 resources:
 - https://github.com/zalando/postgres-operator//manifests/?ref=v1.10.1 #Deploy base
 - https://github.com/zalando/postgres-operator//ui/manifests/?ref=v1.10.1 #Deploy UI
+
+patches:
+- target:
+    kind: Deployment
+    name: postgres-operator
+  patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: postgres-operator
+      annotations:
+        argocd.argoproj.io/sync-wave: "5"
