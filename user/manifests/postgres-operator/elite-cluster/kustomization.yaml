@@ -6,7 +6,7 @@ resources:
 - https://github.com/zalando/postgres-operator//ui/manifests/?ref=v1.10.1 #Deploy UI
 
 patches:
-- target:
+- target: #Deploy operator deployment last
     kind: Deployment
     name: postgres-operator
   patch: |-
@@ -16,7 +16,7 @@ patches:
       name: postgres-operator
       annotations:
         argocd.argoproj.io/sync-wave: "5"
-- target:
+- target: #Remove Ingress
     kind: Ingress
     name: postgres-operator-ui
   patch: |-
@@ -25,3 +25,13 @@ patches:
     kind: Ingress
     metadata:
       name: postgres-operator-ui
+- target: #Set Service to use loadbalancer ip
+    kind: Service
+    name: postgres-operator-ui
+  patch: |-
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: postgres-operator-ui
+    spec:
+      type: LoadBalancer
