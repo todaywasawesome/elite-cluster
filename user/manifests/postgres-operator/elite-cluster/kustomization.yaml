@@ -16,3 +16,12 @@ patches:
       name: postgres-operator
       annotations:
         argocd.argoproj.io/sync-wave: "5"
+- target:
+    kind: Ingress
+    name: postgres-operator-ui
+  patch: |-
+    $patch: delete
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: postgres-operator-ui
