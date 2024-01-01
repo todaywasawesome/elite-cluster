@@ -64,7 +64,7 @@ spec:
   - ReadWriteMany
   resources:
     requests:
-      storage: "20Gi"
+      storage: "50Gi"
   # specify your storage class
   storageClassName: longhorn
 ---
