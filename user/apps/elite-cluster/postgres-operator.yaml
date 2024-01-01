@@ -7,7 +7,7 @@ metadata:
 spec:
   destination:
     name: ''
-    namespace: postgres-system
+    namespace: postgres-operator
     server: 'https://kubernetes.default.svc'
   source:
     path: user/manifests/postgres-operator/elite-cluster
