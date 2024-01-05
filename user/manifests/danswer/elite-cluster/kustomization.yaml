@@ -2,6 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: moonin
 resources:
+- db.yaml
 - api_server-service-deployment.yaml
 - background-deployment.yaml
 # - https://github.com/danswer-ai/danswer//deployment/kubernetes/env-configmap.yaml # Moved to config map generator
