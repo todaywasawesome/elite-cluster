@@ -57,6 +57,7 @@ spec:
     spec:
       accessModes:
       - ReadWriteOnce
+      storageClassName: longhorn
       resources:
         requests:
           # Adjust the storage request size as needed.
