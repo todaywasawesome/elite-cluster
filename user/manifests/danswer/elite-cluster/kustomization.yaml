@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: moonin
+resources:
+- api_server-service-deployment.yaml
+- background-deployment.yaml
+# - https://github.com/danswer-ai/danswer//deployment/kubernetes/env-configmap.yaml # Moved to config map generator
+# - https://github.com/danswer-ai/danswer//deployment/kubernetes/nginx-configmap.yaml # Moved to config map generator
+- nginx-service-deployment.yaml
+- persistent-volumes.yaml
+# - https://github.com/danswer-ai/danswer//deployment/kubernetes/postgres-service-deployment.yaml # Using separate postgres database
+- secrets.yaml
+- vespa-service-deployment.yaml
+- web_server-service-deployment.yaml
+
+configMapGenerator:
+- name: env-configmap
+  files:
+  - env.properties
+- name: nginx-configmap
+  files:
+  - nginx.conf
