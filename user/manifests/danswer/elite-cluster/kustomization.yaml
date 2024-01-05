@@ -45,7 +45,7 @@ configMapGenerator:
     - MULTILINGUAL_QUERY_EXPANSION=""
     - QA_PROMPT_OVERRIDE=""
     # Other Services
-    - POSTGRES_HOST="moonin.moonin.svc.cluster.local:5432"
+    - POSTGRES_HOST="moonin"
     - VESPA_HOST="document-index-service"
     # Don't change the NLP models unless you know what you're doing
     - DOCUMENT_ENCODER_MODEL=""
@@ -88,3 +88,26 @@ configMapGenerator:
 - name: nginx-configmap
   files:
   - nginx.conf
+
+
+patches:
+- target: #Replace resources
+    kind: Deployment
+    name: postgres-operator
+  patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: background-deployment
+      annotations:
+        argocd.argoproj.io/sync-options: Replace=true
+- target: #Replace Resources
+    kind: Deployment
+    name: postgres-operator
+  patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: api-server-deployment
+      annotations:
+        argocd.argoproj.io/sync-options: Replace=true
