@@ -45,7 +45,7 @@ configMapGenerator:
     - MULTILINGUAL_QUERY_EXPANSION=""
     - QA_PROMPT_OVERRIDE=""
     # Other Services
-    - POSTGRES_HOST="relational-db-service"
+    - POSTGRES_HOST="moonin.moonin.svc.cluster.local:5432"
     - VESPA_HOST="document-index-service"
     # Don't change the NLP models unless you know what you're doing
     - DOCUMENT_ENCODER_MODEL=""
