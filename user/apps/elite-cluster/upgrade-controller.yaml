@@ -8,7 +8,7 @@ spec:
     namespace: system-upgrade
     server: 'https://kubernetes.default.svc'
   source:
-    path: ./manifests/system-upgrade-controller.yaml
+    path: './manifests/'
     repoURL: 'https://github.com/rancher/system-upgrade-controller/'
     targetRevision: v0.13.2
   sources: []
