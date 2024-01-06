@@ -10,7 +10,7 @@ resources:
 - nginx-service-deployment.yaml
 - persistent-volumes.yaml
 # - https://github.com/danswer-ai/danswer//deployment/kubernetes/postgres-service-deployment.yaml # Using separate postgres database
-- secrets.yaml
+# - secrets.yaml #Not needed
 - vespa-service-deployment.yaml
 - web_server-service-deployment.yaml
 

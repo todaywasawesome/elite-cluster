@@ -39,6 +39,19 @@ spec:
             uvicorn danswer.main:app --host 0.0.0.0 --port 8080
         ports:
         - containerPort: 8080
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres.moonin.credentials.postgresql.acid.zalan.do
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres.moonin.credentials.postgresql.acid.zalan.do
+                key: password
+          # - name: POSTGRES_DB
+          #   value: 
         # There are some extra values since this is shared between services
         # There are no conflicts though, extra env variables are simply ignored
         envFrom:
