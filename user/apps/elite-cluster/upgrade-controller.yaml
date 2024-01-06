@@ -8,9 +8,9 @@ spec:
     namespace: system-upgrade
     server: 'https://kubernetes.default.svc'
   source:
-    path: './manifests/'
+    path: '.'
     repoURL: 'https://github.com/rancher/system-upgrade-controller/'
-    targetRevision: v0.13.2
+    targetRevision: HEAD
   sources: []
   project: elite-cluster
   syncPolicy:
