@@ -26,11 +26,11 @@ configMapGenerator:
     - SMTP_USER=""  # 'your-email@company.com'
     - SMTP_PASS=""  # 'your-gmail-password'
     # Gen AI Settings
-    - GEN_AI_MODEL_PROVIDER="HuggingFace"
+    - GEN_AI_MODEL_PROVIDER="openai"
     - GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"  # Use GPT-4 if you have it
     - FAST_GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"
     - GEN_AI_API_KEY="EMPTY"
-    - GEN_AI_API_ENDPOINT="gpt3.rpbo.xyz"
+    - GEN_AI_API_ENDPOINT="http://10.0.0.51:8000/"
     - GEN_AI_API_VERSION="v1"
     - GEN_AI_LLM_PROVIDER_TYPE="openai"
     - QA_TIMEOUT="60"
@@ -67,8 +67,8 @@ configMapGenerator:
     - GONG_CONNECTOR_START_TIME=""
     - NOTION_CONNECTOR_ENABLE_RECURSIVE_PAGE_LOOKUP=""
     # DanswerBot SlackBot Configs
-    - DANSWER_BOT_SLACK_APP_TOKEN=""
-    - DANSWER_BOT_SLACK_BOT_TOKEN=""
+    # - DANSWER_BOT_SLACK_APP_TOKEN="" #Set in app
+    # - DANSWER_BOT_SLACK_BOT_TOKEN=""
     - DANSWER_BOT_DISABLE_DOCS_ONLY_ANSWER=""
     - DANSWER_BOT_DISPLAY_ERROR_MSGS=""
     - DANSWER_BOT_RESPOND_EVERY_CHANNEL=""
