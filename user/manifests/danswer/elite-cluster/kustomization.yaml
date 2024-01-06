@@ -26,11 +26,11 @@ configMapGenerator:
     - SMTP_USER=""  # 'your-email@company.com'
     - SMTP_PASS=""  # 'your-gmail-password'
     # Gen AI Settings
-    - GEN_AI_MODEL_PROVIDER="openai"
-    - GEN_AI_MODEL_VERSION="gpt-3.5-turbo"  # Use GPT-4 if you have it
+    - GEN_AI_MODEL_PROVIDER="vllm"
+    - GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"  # Use GPT-4 if you have it
     - FAST_GEN_AI_MODEL_VERSION="gpt-3.5-turbo"
     - GEN_AI_API_KEY=""
-    - GEN_AI_API_ENDPOINT=""
+    - GEN_AI_API_ENDPOINT="http://10.0.0.51:8000"
     - GEN_AI_API_VERSION=""
     - GEN_AI_LLM_PROVIDER_TYPE=""
     - QA_TIMEOUT="60"
