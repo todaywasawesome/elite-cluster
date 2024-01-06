@@ -18,6 +18,17 @@ spec:
         imagePullPolicy: IfNotPresent
         command: ["/usr/bin/supervisord"]
         # There are some extra values since this is shared between services
+        env:
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres.moonin.credentials.postgresql.acid.zalan.do
+                key: username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres.moonin.credentials.postgresql.acid.zalan.do
+                key: password
         # There are no conflicts though, extra env variables are simply ignored
         envFrom:
         - configMapRef:
