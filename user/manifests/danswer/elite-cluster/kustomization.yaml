@@ -101,8 +101,9 @@ patches:
       name: background-deployment
       # annotations:
       #   argocd.argoproj.io/sync-options: Replace=true
-    spec:
-      strategy: Recreate
+    template:
+      spec:
+        strategy: Recreate
       revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
@@ -114,9 +115,10 @@ patches:
       name: api-server-deployment
       # annotations:
       #   argocd.argoproj.io/sync-options: Replace=true
-    spec:
-      strategy: Recreate
-      revisionHistoryLimit: 0
+    template:
+      spec:
+        strategy: Recreate
+        revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
     name: background-deployment
@@ -127,6 +129,7 @@ patches:
       name: background-deployment
       # annotations:
       #   argocd.argoproj.io/sync-options: Replace=true
-    spec:
-      strategy: Recreate
-      revisionHistoryLimit: 0
+    template:
+      spec:
+        strategy: Recreate
+        revisionHistoryLimit: 0
