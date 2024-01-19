@@ -99,8 +99,10 @@ patches:
     kind: Deployment
     metadata:
       name: background-deployment
-      annotations:
-        argocd.argoproj.io/sync-options: Replace=true
+      # annotations:
+      #   argocd.argoproj.io/sync-options: Replace=true
+      spec:
+        strategy: Recreate
 - target: #Replace Resources
     kind: Deployment
     name: postgres-operator
@@ -109,8 +111,10 @@ patches:
     kind: Deployment
     metadata:
       name: api-server-deployment
-      annotations:
-        argocd.argoproj.io/sync-options: Replace=true
+      # annotations:
+      #   argocd.argoproj.io/sync-options: Replace=true
+      spec:
+        strategy: Recreate
 - target: #Replace Resources
     kind: Deployment
     name: background-deployment
@@ -119,5 +123,7 @@ patches:
     kind: Deployment
     metadata:
       name: background-deployment
-      annotations:
-        argocd.argoproj.io/sync-options: Replace=true
+      # annotations:
+      #   argocd.argoproj.io/sync-options: Replace=true
+      spec:
+        strategy: Recreate
