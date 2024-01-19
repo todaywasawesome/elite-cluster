@@ -104,7 +104,8 @@ patches:
     spec:
       template:
         spec:
-          strategy: Recreate
+          strategy: 
+            type: Recreate
         revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
@@ -119,7 +120,8 @@ patches:
     spec:
       template:
         spec:
-          strategy: Recreate
+          strategy
+            type: Recreate
         revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
@@ -134,5 +136,6 @@ patches:
     spec:
       template:
         spec:
-          strategy: Recreate
+          strategy: 
+            type: Recreate
           revisionHistoryLimit: 0
