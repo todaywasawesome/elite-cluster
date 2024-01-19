@@ -93,22 +93,6 @@ configMapGenerator:
 patches:
 - target: #Replace Resources
     kind: Deployment
-    name: postgres-operator
-  patch: |-
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-      name: api-server-deployment
-      # annotations:
-      #   argocd.argoproj.io/sync-options: Replace=true
-    spec:
-      template:
-        spec:
-          strategy:
-            type: Recreate
-        revisionHistoryLimit: 0
-- target: #Replace Resources
-    kind: Deployment
     name: background-deployment
   patch: |-
     apiVersion: apps/v1
