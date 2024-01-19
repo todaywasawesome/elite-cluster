@@ -119,3 +119,25 @@ patches:
       strategy:
         type: Recreate
       revisionHistoryLimit: 0
+- target: #Don't keep old revisions
+    kind: Deployment
+    name: nginx-deployment
+  patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: nginx-deployment
+    spec:
+      strategy:
+      revisionHistoryLimit: 0
+- target: #Don't keep old revisions
+    kind: Deployment
+    name: web-server-deployment
+  patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: web-server-deployment
+    spec:
+      strategy:
+      revisionHistoryLimit: 0
