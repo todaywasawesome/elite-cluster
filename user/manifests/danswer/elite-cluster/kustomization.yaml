@@ -26,18 +26,18 @@ configMapGenerator:
     - SMTP_USER=""  # 'your-email@company.com'
     - SMTP_PASS=""  # 'your-gmail-password'
     # Gen AI Settings
-    # - GEN_AI_MODEL_PROVIDER="VLLM"
-    # - GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"  # Use GPT-4 if you have it
-    # - FAST_GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"
-    # - GEN_AI_API_KEY="EMPTY"
-    # - GEN_AI_API_ENDPOINT="http://10.0.0.51:8000/"
-    # - GEN_AI_API_VERSION="v1"
-    # - GEN_AI_LLM_PROVIDER_TYPE="VLLM"
-    # - QA_TIMEOUT="60"
-    # - NUM_DOCUMENT_TOKENS_FED_TO_GENERATIVE_MODEL=""
-    # - DISABLE_LLM_FILTER_EXTRACTION=""
-    # - DISABLE_LLM_CHUNK_FILTER=""
-    # - DISABLE_LLM_CHOOSE_SEARCH=""
+    - GEN_AI_MODEL_PROVIDER="VLLM"
+    - GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"  # Use GPT-4 if you have it
+    - FAST_GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"
+    - GEN_AI_API_KEY="EMPTY"
+    - GEN_AI_API_ENDPOINT="http://10.0.0.51:8000/"
+    - GEN_AI_API_VERSION="v1"
+    - GEN_AI_LLM_PROVIDER_TYPE="VLLM"
+    - QA_TIMEOUT="60"
+    - NUM_DOCUMENT_TOKENS_FED_TO_GENERATIVE_MODEL=""
+    - DISABLE_LLM_FILTER_EXTRACTION=""
+    - DISABLE_LLM_CHUNK_FILTER=""
+    - DISABLE_LLM_CHOOSE_SEARCH=""
     # Query Options
     - DOC_TIME_DECAY=""
     - HYBRID_ALPHA=""
@@ -54,8 +54,8 @@ configMapGenerator:
     - ASYM_PASSAGE_PREFIX=""
     - ENABLE_RERANKING_REAL_TIME_FLOW=""
     - ENABLE_RERANKING_ASYNC_FLOW=""
-    - MODEL_SERVER_HOST="10.0.0.51"
-    - MODEL_SERVER_PORT="8000"
+    # - MODEL_SERVER_HOST="10.0.0.51"
+    # - MODEL_SERVER_PORT="8000"
     - INDEXING_MODEL_SERVER_HOST=""
     - MIN_THREADS_ML_MODELS=""
     # Indexing Configs
