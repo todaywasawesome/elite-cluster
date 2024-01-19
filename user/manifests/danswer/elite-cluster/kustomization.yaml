@@ -103,6 +103,7 @@ patches:
       #   argocd.argoproj.io/sync-options: Replace=true
       spec:
         strategy: Recreate
+        revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
     name: postgres-operator
@@ -115,6 +116,7 @@ patches:
       #   argocd.argoproj.io/sync-options: Replace=true
       spec:
         strategy: Recreate
+        revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
     name: background-deployment
@@ -127,3 +129,4 @@ patches:
       #   argocd.argoproj.io/sync-options: Replace=true
       spec:
         strategy: Recreate
+        revisionHistoryLimit: 0
