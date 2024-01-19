@@ -120,7 +120,7 @@ patches:
     spec:
       template:
         spec:
-          strategy
+          strategy:
             type: Recreate
         revisionHistoryLimit: 0
 - target: #Replace Resources
