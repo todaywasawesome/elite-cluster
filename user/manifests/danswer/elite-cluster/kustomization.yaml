@@ -26,13 +26,13 @@ configMapGenerator:
     - SMTP_USER=""  # 'your-email@company.com'
     - SMTP_PASS=""  # 'your-gmail-password'
     # Gen AI Settings
-    - GEN_AI_MODEL_PROVIDER="vllm"
+    - GEN_AI_MODEL_PROVIDER="vLLM"
     - GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"  # Use GPT-4 if you have it
     - FAST_GEN_AI_MODEL_VERSION="TheBloke/Mistral-7B-Instruct-v0.2-GPTQ"
     - GEN_AI_API_KEY="EMPTY"
     - GEN_AI_API_ENDPOINT="http://10.0.0.51:8000/"
     - GEN_AI_API_VERSION="v1"
-    - GEN_AI_LLM_PROVIDER_TYPE="vllm"
+    - GEN_AI_LLM_PROVIDER_TYPE="vLLM"
     - QA_TIMEOUT="60"
     - NUM_DOCUMENT_TOKENS_FED_TO_GENERATIVE_MODEL=""
     - DISABLE_LLM_FILTER_EXTRACTION=""
