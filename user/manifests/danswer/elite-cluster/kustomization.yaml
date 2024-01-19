@@ -111,3 +111,13 @@ patches:
       name: api-server-deployment
       annotations:
         argocd.argoproj.io/sync-options: Replace=true
+- target: #Replace Resources
+    kind: Deployment
+    name: background-deployment
+  patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: background-deployment
+      annotations:
+        argocd.argoproj.io/sync-options: Replace=true
