@@ -101,10 +101,11 @@ patches:
       name: background-deployment
       # annotations:
       #   argocd.argoproj.io/sync-options: Replace=true
-    template:
-      spec:
-        strategy: Recreate
-      revisionHistoryLimit: 0
+    spec:
+      template:
+        spec:
+          strategy: Recreate
+        revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
     name: postgres-operator
@@ -115,9 +116,10 @@ patches:
       name: api-server-deployment
       # annotations:
       #   argocd.argoproj.io/sync-options: Replace=true
-    template:
-      spec:
-        strategy: Recreate
+    spec:
+      template:
+        spec:
+          strategy: Recreate
         revisionHistoryLimit: 0
 - target: #Replace Resources
     kind: Deployment
@@ -129,7 +131,8 @@ patches:
       name: background-deployment
       # annotations:
       #   argocd.argoproj.io/sync-options: Replace=true
-    template:
-      spec:
-        strategy: Recreate
-        revisionHistoryLimit: 0
+    spec:
+      template:
+        spec:
+          strategy: Recreate
+          revisionHistoryLimit: 0
