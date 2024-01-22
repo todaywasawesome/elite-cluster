@@ -61,4 +61,5 @@ spec:
       resources:
         requests:
           # Adjust the storage request size as needed.
-          storage: 10Gi
+          storage: 1Gi
+          # Adjusted to 10 GB by longhorn
