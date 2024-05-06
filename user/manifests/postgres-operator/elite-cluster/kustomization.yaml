@@ -36,3 +36,12 @@ patches:
       name: postgres-operator-ui
     spec:
       type: LoadBalancer
+- target: #Have UI watch all namespaces
+    kind: Deployment
+    name: postgres-operator-ui
+  patch: |-
+    - op: add
+      path: "/spec/template/spec/containers/0/env/1"
+      value:
+        name: targetNamespace
+        value: "*"
