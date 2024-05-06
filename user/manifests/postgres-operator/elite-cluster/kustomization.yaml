@@ -2,8 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: postgres-operator
 resources:
-- https://github.com/zalando/postgres-operator//manifests/?ref=v1.10.1 #Deploy base
-- https://github.com/zalando/postgres-operator//ui/manifests/?ref=v1.10.1 #Deploy UI
+- https://github.com/zalando/postgres-operator//manifests/?ref=v1.11.0 #Deploy base
+- https://github.com/zalando/postgres-operator//ui/manifests/?ref=v1.11.0 #Deploy UI
 - dynamic-permissions.yaml
 
 patches:
