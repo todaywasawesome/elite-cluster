@@ -51,6 +51,24 @@ patches:
       value:
         name: targetNamespace
         value: "*"
+- target: #Have UI watch all namespaces
+    kind: Deployment
+    name: postgres-operator-ui
+  patch: |-
+    - op: add
+      path: "/spec/template/spec/containers/0/env/1"
+      value:
+        name: TARGET_NAMESPACE
+        value: "*"
+- target: #Have UI watch all namespaces
+    kind: Deployment
+    name: postgres-operator-ui
+  patch: |-
+    - op: add
+      path: "/spec/template/spec/containers/0/env/1"
+      value:
+        name: watched_namespace
+        value: "*"
 # - target: #Give UI permissions
 #     kind: ClusterRole
 #     name: postgres-operator-ui
