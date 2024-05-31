@@ -6,6 +6,12 @@ resources:
 - https://github.com/zalando/postgres-operator//ui/manifests/?ref=v1.11.0 #Deploy UI
 - dynamic-permissions.yaml
 
+configMapGenerator:
+- name: postgres-operator
+  behavior: merge
+  literals:
+  - OPERATOR_API_URL=postgres-opreator.postgres-operator.svc.cluster.local:8080
+
 patches:
 - target: #Deploy operator deployment last
     kind: Deployment
@@ -45,3 +51,12 @@ patches:
       value:
         name: targetNamespace
         value: "*"
+# - target: #Give UI permissions
+#     kind: ClusterRole
+#     name: postgres-operator-ui
+#   patch: |-
+#     - op: merge
+#       path: "/rules/0"
+#       value:
+#         apiGroups:
+#           - 
