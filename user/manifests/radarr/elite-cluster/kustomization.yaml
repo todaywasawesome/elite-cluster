@@ -18,4 +18,4 @@ patchesStrategicMerge:
       spec:
         containers:
         - name: radarr
-          image: linuxserver/radarr:4.5.2
+          image: linuxserver/radarr:5.16.3
