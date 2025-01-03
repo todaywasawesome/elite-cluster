@@ -5,7 +5,7 @@ configMapGenerator:
   # files:
   # - kustomize-buildoptions.yaml
   literals:
-  # - "kustomize.buildOptions= --enable-helm"
+  - "kustomize.buildOptions=--enable-helm"
   - |
     repository.credentials=- passwordSecret:
         key: git_token
