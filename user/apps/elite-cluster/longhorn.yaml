@@ -14,6 +14,13 @@ spec:
     repoURL: 'https://charts.longhorn.io'
     targetRevision: 1.5.1
     chart: longhorn
+    helm:
+      values: |
+        global:
+          tolerations:
+            - key: "node-role.kubernetes.io/control-plane"
+              operator: "Exists"
+              effect: "NoSchedule"
   sources: []
   project: elite-cluster
   syncPolicy:
