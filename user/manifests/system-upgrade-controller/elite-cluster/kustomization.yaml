@@ -1,0 +1,8 @@
+# System upgrade controller kustomization.yml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: system-upgrade
+
+resources:
+- github.com/rancher/system-upgrade-controller/?ref=v0.14.2
+# - github.com/metallb/metallb/config/native?ref=v0.13.9
