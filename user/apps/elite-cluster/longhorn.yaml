@@ -6,22 +6,12 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    name: ''
     namespace: longhorn-system
     server: 'https://kubernetes.default.svc'
   source:
-    path: ''
-    repoURL: 'https://charts.longhorn.io'
-    targetRevision: 1.5.1
-    chart: longhorn
-    helm:
-      values: |
-        global:
-          tolerations:
-            - key: "node-role.kubernetes.io/control-plane"
-              operator: "Exists"
-              effect: "NoSchedule"
-  sources: []
+    path: user/manifests/longhorn/elite-cluster
+    repoURL: 'https://github.com/todaywasawesome/elite-cluster'
+    targetRevision: HEAD
   project: elite-cluster
   syncPolicy:
     automated: null
