@@ -6,6 +6,7 @@ configMapGenerator:
   # - kustomize-buildoptions.yaml
   literals:
   - "kustomize.buildOptions=--enable-helm"
+  - "application.resourceTrackingMethod=annotation+label"
   - |
     repository.credentials=- passwordSecret:
         key: git_token
