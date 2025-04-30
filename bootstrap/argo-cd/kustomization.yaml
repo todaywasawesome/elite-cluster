@@ -5,6 +5,8 @@ configMapGenerator:
   # files:
   # - kustomize-buildoptions.yaml
   literals:
+  - "accounts.admin=apiKey, login"
+  - "accounts.admin.enabled='true'"
   - "kustomize.buildOptions=--enable-helm"
   - "application.resourceTrackingMethod=annotation+label"
   - |
