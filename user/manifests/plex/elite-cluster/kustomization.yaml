@@ -17,7 +17,7 @@ patches:
         spec:
           containers:
           - name: plex
-            image: lscr.io/linuxserver/plex:version-1.32.5.7349-8f4248874
+            image: lscr.io/linuxserver/plex:version-1.41.7.9799-5bce000f7
 - patch: |-
     apiVersion: apps/v1
     kind: Deployment
@@ -40,4 +40,4 @@ patches:
         spec:
           containers:
           - name: plex-worker
-            image: lscr.io/linuxserver/plex:version-1.32.5.7349-8f4248874
+            image: lscr.io/linuxserver/plex:version-1.41.7.9799-5bce000f7
