@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres
+  name: speedtest-postgres
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 50Gi
+      storage: 10Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -45,7 +45,7 @@ spec:
       volumes:
         - name: postgres
           persistentVolumeClaim:
-            claimName: postgres
+            claimName: speedtest-postgres
 
 ---
 apiVersion: v1
