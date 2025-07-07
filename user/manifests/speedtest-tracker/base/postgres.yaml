@@ -28,11 +28,17 @@ spec:
           image: postgres:15.1
           env:
             - name: POSTGRES_PASSWORD
-              value: password
+              valueFrom:
+                secretKeyRef:
+                  name: speedtest-db-credentials
+                  key: DB_PASSWORD
             - name: POSTGRES_DB
               value: speedtest_tracker
             - name: POSTGRES_USER
-              value: speedy
+              valueFrom:
+                secretKeyRef:
+                  name: speedtest-db-credentials
+                  key: DB_USERNAME
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: postgres
