@@ -7,15 +7,15 @@ resources:
 # patches:
 # - 
 
-patchesStrategicMerge:
-- |-
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: sonarr-deployment
-  spec:
-    template:
-      spec:
-        containers:
-        - name: sonarr
-          image: linuxserver/sonarr:4.0.11
+patches:
+- patch: |-
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: sonarr-deployment
+    spec:
+      template:
+        spec:
+          containers:
+          - name: sonarr
+            image: linuxserver/sonarr:4.0.15
