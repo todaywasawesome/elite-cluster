@@ -18,4 +18,4 @@ patches:
         spec:
           containers:
           - name: sonarr
-            image: linuxserver/sonarr:4.0.15
+            image: linuxserver/sonarr:4.0.16
