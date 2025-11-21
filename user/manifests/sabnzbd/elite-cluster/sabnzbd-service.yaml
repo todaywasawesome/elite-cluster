@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    metallb.io/ip-allocated-from-pool: default
+    metallb.universe.tf/ip-allocated-from-pool: default
+  name: sabnzbd-service
+  namespace: default
+spec:
+  clusterIP: 10.43.97.119
+  clusterIPs:
+  - 10.43.97.119
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30758
+    port: 8080
+  selector:
+    app: sabnzbd
+  type: LoadBalancer
