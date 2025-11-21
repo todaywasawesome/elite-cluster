@@ -17,7 +17,7 @@ patches:
         spec:
           containers:
           - name: plex
-            image: lscr.io/linuxserver/plex:version-1.41.7.9799-5bce000f7
+            image: linuxserver/plex:1.42.2
 - patch: |-
     apiVersion: apps/v1
     kind: Deployment
@@ -28,7 +28,7 @@ patches:
         spec:
           containers:
           - name: plex
-            image: pabloromeo/clusterplex_orchestrator:1.4.4
+            image: pabloromeo/clusterplex_orchestrator:1.4.16
 - patch: |-
     apiVersion: apps/v1
     kind: StatefulSet
