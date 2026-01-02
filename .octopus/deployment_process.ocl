@@ -1,0 +1,25 @@
+step "run-a-script" {
+    name = "Run a Script"
+    properties = {
+        Octopus.Action.MaxParallelism = "1"
+        Octopus.Action.TargetRoles = "k8snode"
+    }
+
+    action {
+        action_type = "Octopus.Script"
+        properties = {
+            Octopus.Action.RunOnServer = "false"
+            Octopus.Action.Script.ScriptBody = <<-EOT
+                export DEBIAN_FRONTEND=noninteractive
+                export DEBIAN_PRIORITY=critical
+                sudo -E apt-get -qy update
+                sudo -E apt-get -qy upgrade
+                sudo -E apt-get -qy autoclean
+                EOT
+            Octopus.Action.Script.ScriptSource = "Inline"
+            Octopus.Action.Script.Syntax = "Bash"
+            OctopusUseBundledTooling = "False"
+        }
+        worker_pool_variable = ""
+    }
+}
