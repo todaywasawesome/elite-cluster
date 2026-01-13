@@ -1,6 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  annotations:
+    argo.octopus.com/project: "radarr"
+    argo.octopus.com/environment: "elite-cluster"
   name: radarr
   finalizers:
     - resources-finalizer.argocd.argoproj.io
