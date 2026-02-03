@@ -34,7 +34,7 @@ openclaw:
               - sh
               - -c
               - |
-                cp /config/openclaw.json /home/node/.openclaw/openclaw.json
+                cat /config/OPENCLAW_CONFIG > /home/node/.openclaw/openclaw.json
                 chown 1000:1000 /home/node/.openclaw/openclaw.json
             securityContext:
               runAsUser: 0
@@ -255,7 +255,7 @@ openclaw:
           main:
             init-config:
               - path: /config
-                readOnly: true
+                readOnly: false
 
       # Entire .openclaw directory as PVC
       data:
