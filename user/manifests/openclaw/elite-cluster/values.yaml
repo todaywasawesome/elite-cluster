@@ -37,7 +37,7 @@ openclaw:
                 cat /config/OPENCLAW_CONFIG > /home/node/.openclaw/openclaw.json
                 chown 1000:1000 /home/node/.openclaw/openclaw.json
             securityContext:
-              runAsUser: 0
+              runAsUser: 1000
               allowPrivilegeEscalation: false
               capabilities:
                 drop:
@@ -201,15 +201,6 @@ openclaw:
                   tcpSocket:
                     port: 9222
                   initialDelaySeconds: 5
-                  periodSeconds: 10
-
-    configMaps: # Why mount secrets as configmaps?!?
-      config:
-        enabled: false
-        data:
-          # OpenClaw configuration - JSON5 format
-          # Sensitive values use ${ENV_VAR} substitution from environment secret
-          openclaw.json: ${OPENCLAW_CONFIG}
 
     service:
       main:
@@ -255,7 +246,7 @@ openclaw:
           main:
             init-config:
               - path: /config
-                readOnly: false
+                readOnly: true
 
       # Entire .openclaw directory as PVC
       data:
