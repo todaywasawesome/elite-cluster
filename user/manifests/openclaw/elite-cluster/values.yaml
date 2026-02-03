@@ -203,13 +203,13 @@ openclaw:
                   initialDelaySeconds: 5
                   periodSeconds: 10
 
-    configMaps:
+    configMaps: # Why mount secrets as configmaps?!?
       config:
-        enabled: true
+        enabled: false
         data:
           # OpenClaw configuration - JSON5 format
           # Sensitive values use ${ENV_VAR} substitution from environment secret
-          openclaw.json: "${OPENCLAW_CONFIG}"
+          openclaw.json: ${OPENCLAW_CONFIG}
 
     service:
       main:
@@ -249,8 +249,8 @@ openclaw:
       # ConfigMap for init container to copy from
       config:
         enabled: true
-        type: configMap
-        name: openclaw
+        type: secret
+        name: openclaw-env
         advancedMounts:
           main:
             init-config:
