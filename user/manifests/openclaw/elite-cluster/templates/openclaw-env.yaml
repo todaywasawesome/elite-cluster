@@ -6,7 +6,7 @@ metadata:
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
-    name: elite-cluster
+    name: k8s
   target:
     creationPolicy: Owner
   data:

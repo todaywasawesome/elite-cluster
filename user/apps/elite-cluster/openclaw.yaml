@@ -6,7 +6,7 @@ metadata:
   namespace: argocd 
 spec:
   destination:
-    namespace: external-secrets
+    namespace: openclaw
     server: https://kubernetes.default.svc
   project: default
   source:
