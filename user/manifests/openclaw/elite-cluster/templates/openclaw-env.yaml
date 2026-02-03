@@ -1,0 +1,18 @@
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  # name of the ExternalSecret & Secret which gets created
+  name: openclaw-env
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: elite-cluster
+  target:
+    creationPolicy: Owner
+  data:
+  - secretKey: OPENCLAW_CONFIG
+    remoteRef:
+      # 1password-entry-name
+      key: "OpenClaw"
+      # 1password-field
+      property: openclaw.json

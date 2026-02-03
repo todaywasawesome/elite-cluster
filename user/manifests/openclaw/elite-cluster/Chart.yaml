@@ -1,0 +1,11 @@
+apiVersion: v2
+name: openclaw
+description: OpenClaw deployment for my-cluster
+type: application
+version: 1.0.0
+appVersion: "2026.2.1"
+
+dependencies:
+  - name: openclaw
+    version: 1.3.0
+    repository: https://serhanekicii.github.io/openclaw-helm
