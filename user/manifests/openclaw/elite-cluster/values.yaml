@@ -34,7 +34,7 @@ openclaw:
               - sh
               - -c
               - |
-                cat /config/OPENCLAW_CONFIG > /home/node/.openclaw/openclaw.json
+                cat /secret/OPENCLAW_CONFIG > /home/node/.openclaw/openclaw.json
                 chown 1000:1000 /home/node/.openclaw/openclaw.json
             securityContext:
               runAsUser: 1000
@@ -239,14 +239,14 @@ openclaw:
 
     persistence:
       # ConfigMap for init container to copy from
-      config:
+      secret:
         enabled: true
         type: secret
         name: openclaw-env
         advancedMounts:
           main:
             init-config:
-              - path: /config
+              - path: /secret
                 readOnly: true
 
       # Entire .openclaw directory as PVC
