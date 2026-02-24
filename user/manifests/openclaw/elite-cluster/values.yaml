@@ -93,7 +93,7 @@ openclaw:
           main:
             image:
               repository: ghcr.io/openclaw/openclaw
-              tag: "2026.1.30"
+              tag: "2026.2.23"
               pullPolicy: IfNotPresent
             command:
               - node
