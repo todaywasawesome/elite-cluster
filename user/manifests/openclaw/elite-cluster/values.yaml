@@ -205,6 +205,7 @@ openclaw:
     service:
       main:
         controller: main
+        type: LoadBalancer
         # IPv4-only - required due to trustedProxies limitation
         ipFamilyPolicy: SingleStack
         ipFamilies:
