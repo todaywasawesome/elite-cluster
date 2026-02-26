@@ -1,0 +1,19 @@
+# app-1password-connect.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sympozium
+  namespace: argocd 
+spec:
+  destination:
+    namespace: sympozium-system
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    repoURL: 'https://github.com/todaywasawesome/elite-cluster'
+    targetRevision: HEAD
+    path: user/manifests/sympozium/elite-cluster
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

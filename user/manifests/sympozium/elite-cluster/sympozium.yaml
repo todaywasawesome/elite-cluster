@@ -1,0 +1,1179 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      app.kubernetes.io/component: nats
+      pod-template-hash: 68b8f6dd6d
+    name: nats-68b8f6dd6d-vl54q
+    namespace: sympozium-system
+  spec:
+    containers:
+    - args:
+      - --jetstream
+      - --store_dir=/data
+      - -m
+      - "8222"
+      image: nats:2-alpine
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: monitor
+        initialDelaySeconds: 5
+      name: nats
+      ports:
+      - containerPort: 4222
+        name: client
+      - containerPort: 8222
+        name: monitor
+      readinessProbe:
+        httpGet:
+          path: /healthz
+          port: monitor
+        initialDelaySeconds: 2
+        periodSeconds: 5
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+      volumeMounts:
+      - mountPath: /data
+        name: data
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-fs4z5
+        readOnly: true
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    securityContext:
+      fsGroup: 1000
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccountName: default
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: data
+    - name: kube-api-access-fs4z5
+      projected:
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                fieldPath: metadata.namespace
+              path: namespace
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      app.kubernetes.io/component: apiserver
+      pod-template-hash: 5f6d5dccbf
+    name: sympozium-apiserver-5f6d5dccbf-4hgzm
+    namespace: sympozium-system
+  spec:
+    containers:
+    - args:
+      - --event-bus-url=nats://nats.sympozium-system.svc:4222
+      image: ghcr.io/alexsjones/sympozium/apiserver:v0.0.42
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: http
+      name: apiserver
+      ports:
+      - containerPort: 8080
+        name: http
+      readinessProbe:
+        httpGet:
+          path: /readyz
+          port: http
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-pxqbs
+        readOnly: true
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    securityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccountName: sympozium-apiserver
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-pxqbs
+      projected:
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                fieldPath: metadata.namespace
+              path: namespace
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      app.kubernetes.io/component: apiserver
+      pod-template-hash: 5f6d5dccbf
+    name: sympozium-apiserver-5f6d5dccbf-fvwpv
+    namespace: sympozium-system
+  spec:
+    containers:
+    - args:
+      - --event-bus-url=nats://nats.sympozium-system.svc:4222
+      image: ghcr.io/alexsjones/sympozium/apiserver:v0.0.42
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: http
+      name: apiserver
+      ports:
+      - containerPort: 8080
+        name: http
+      readinessProbe:
+        httpGet:
+          path: /readyz
+          port: http
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-7xkw2
+        readOnly: true
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    securityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccountName: sympozium-apiserver
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-7xkw2
+      projected:
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                fieldPath: metadata.namespace
+              path: namespace
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/default-container: manager
+    labels:
+      control-plane: controller-manager
+      pod-template-hash: 7c44b48b9
+    name: sympozium-controller-manager-7c44b48b9-rjpbv
+    namespace: sympozium-system
+  spec:
+    containers:
+    - args:
+      - --leader-elect
+      env:
+      - name: NATS_URL
+        value: nats://nats.sympozium-system.svc:4222
+      image: ghcr.io/alexsjones/sympozium/controller:v0.0.42
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: health
+        initialDelaySeconds: 15
+        periodSeconds: 20
+      name: manager
+      ports:
+      - containerPort: 8081
+        name: health
+      - containerPort: 8080
+        name: metrics
+      readinessProbe:
+        httpGet:
+          path: /readyz
+          port: health
+        initialDelaySeconds: 5
+      resources:
+        limits:
+          cpu: 500m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-qrvmz
+        readOnly: true
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    securityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccountName: sympozium-controller-manager
+    terminationGracePeriodSeconds: 10
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-qrvmz
+      projected:
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                fieldPath: metadata.namespace
+              path: namespace
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      app.kubernetes.io/component: webhook
+      pod-template-hash: bc8c87f67
+    name: sympozium-webhook-bc8c87f67-8cx28
+    namespace: sympozium-system
+  spec:
+    containers:
+    - image: ghcr.io/alexsjones/sympozium/webhook:v0.0.42
+      name: webhook
+      ports:
+      - containerPort: 9443
+        name: webhook
+      resources:
+        limits:
+          cpu: 200m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+      volumeMounts:
+      - mountPath: /tmp/k8s-webhook-server/serving-certs
+        name: cert
+        readOnly: true
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-2msln
+        readOnly: true
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    securityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccountName: sympozium-controller-manager
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: cert
+      secret:
+        secretName: sympozium-webhook-cert
+    - name: kube-api-access-2msln
+      projected:
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                fieldPath: metadata.namespace
+              path: namespace
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    labels:
+      app.kubernetes.io/component: webhook
+      pod-template-hash: bc8c87f67
+    name: sympozium-webhook-bc8c87f67-dxljp
+    namespace: sympozium-system
+  spec:
+    containers:
+    - image: ghcr.io/alexsjones/sympozium/webhook:v0.0.42
+      name: webhook
+      ports:
+      - containerPort: 9443
+        name: webhook
+      resources:
+        limits:
+          cpu: 200m
+          memory: 128Mi
+        requests:
+          cpu: 50m
+          memory: 64Mi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+      volumeMounts:
+      - mountPath: /tmp/k8s-webhook-server/serving-certs
+        name: cert
+        readOnly: true
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-xnml9
+        readOnly: true
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    securityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccountName: sympozium-controller-manager
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: cert
+      secret:
+        secretName: sympozium-webhook-cert
+    - name: kube-api-access-xnml9
+      projected:
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                fieldPath: metadata.namespace
+              path: namespace
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app.kubernetes.io/component: nats
+      app.kubernetes.io/name: sympozium
+    name: nats
+    namespace: sympozium-system
+  spec:
+    clusterIP: 10.43.232.43
+    clusterIPs:
+    - 10.43.232.43
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: client
+      port: 4222
+      targetPort: client
+    - name: monitor
+      port: 8222
+      targetPort: monitor
+    selector:
+      app.kubernetes.io/component: nats
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app.kubernetes.io/component: apiserver
+      app.kubernetes.io/name: sympozium
+    name: sympozium-apiserver
+    namespace: sympozium-system
+  spec:
+    clusterIP: 10.43.50.154
+    clusterIPs:
+    - 10.43.50.154
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: http
+      port: 8080
+      targetPort: http
+    selector:
+      app.kubernetes.io/component: apiserver
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: sympozium-webhook-service
+    namespace: sympozium-system
+  spec:
+    clusterIP: 10.43.60.132
+    clusterIPs:
+    - 10.43.60.132
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - port: 443
+      targetPort: webhook
+    selector:
+      app.kubernetes.io/component: webhook
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      app.kubernetes.io/component: nats
+      app.kubernetes.io/name: sympozium
+    name: nats
+    namespace: sympozium-system
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: nats
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/component: nats
+      spec:
+        containers:
+        - args:
+          - --jetstream
+          - --store_dir=/data
+          - -m
+          - "8222"
+          image: nats:2-alpine
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: monitor
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: nats
+          ports:
+          - containerPort: 4222
+            name: client
+            protocol: TCP
+          - containerPort: 8222
+            name: monitor
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: monitor
+              scheme: HTTP
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data
+            name: data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          fsGroup: 1000
+          runAsNonRoot: true
+          runAsUser: 1000
+          seccompProfile:
+            type: RuntimeDefault
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: data
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      app.kubernetes.io/component: apiserver
+      app.kubernetes.io/name: sympozium
+    name: sympozium-apiserver
+    namespace: sympozium-system
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: apiserver
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/component: apiserver
+      spec:
+        containers:
+        - args:
+          - --event-bus-url=nats://nats.sympozium-system.svc:4222
+          image: ghcr.io/alexsjones/sympozium/apiserver:v0.0.42
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: http
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: apiserver
+          ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: http
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        serviceAccount: sympozium-apiserver
+        serviceAccountName: sympozium-apiserver
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/name: sympozium
+      control-plane: controller-manager
+    name: sympozium-controller-manager
+    namespace: sympozium-system
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        control-plane: controller-manager
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/default-container: manager
+        creationTimestamp: null
+        labels:
+          control-plane: controller-manager
+      spec:
+        containers:
+        - args:
+          - --leader-elect
+          env:
+          - name: NATS_URL
+            value: nats://nats.sympozium-system.svc:4222
+          image: ghcr.io/alexsjones/sympozium/controller:v0.0.42
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: health
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: manager
+          ports:
+          - containerPort: 8081
+            name: health
+            protocol: TCP
+          - containerPort: 8080
+            name: metrics
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: health
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        serviceAccount: sympozium-controller-manager
+        serviceAccountName: sympozium-controller-manager
+        terminationGracePeriodSeconds: 10
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      app.kubernetes.io/component: webhook
+      app.kubernetes.io/name: sympozium
+    name: sympozium-webhook
+    namespace: sympozium-system
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 2
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: webhook
+    strategy:
+      rollingUpdate:
+        maxSurge: 25%
+        maxUnavailable: 25%
+      type: RollingUpdate
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/component: webhook
+      spec:
+        containers:
+        - image: ghcr.io/alexsjones/sympozium/webhook:v0.0.42
+          imagePullPolicy: IfNotPresent
+          name: webhook
+          ports:
+          - containerPort: 9443
+            name: webhook
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /tmp/k8s-webhook-server/serving-certs
+            name: cert
+            readOnly: true
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        serviceAccount: sympozium-controller-manager
+        serviceAccountName: sympozium-controller-manager
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: cert
+          secret:
+            defaultMode: 420
+            secretName: sympozium-webhook-cert
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      app.kubernetes.io/component: nats
+      pod-template-hash: 68b8f6dd6d
+    name: nats-68b8f6dd6d
+    namespace: sympozium-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: nats
+        pod-template-hash: 68b8f6dd6d
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/component: nats
+          pod-template-hash: 68b8f6dd6d
+      spec:
+        containers:
+        - args:
+          - --jetstream
+          - --store_dir=/data
+          - -m
+          - "8222"
+          image: nats:2-alpine
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: monitor
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: nats
+          ports:
+          - containerPort: 4222
+            name: client
+            protocol: TCP
+          - containerPort: 8222
+            name: monitor
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: monitor
+              scheme: HTTP
+            initialDelaySeconds: 2
+            periodSeconds: 5
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /data
+            name: data
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          fsGroup: 1000
+          runAsNonRoot: true
+          runAsUser: 1000
+          seccompProfile:
+            type: RuntimeDefault
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: data
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      app.kubernetes.io/component: apiserver
+      pod-template-hash: 5f6d5dccbf
+    name: sympozium-apiserver-5f6d5dccbf
+    namespace: sympozium-system
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: apiserver
+        pod-template-hash: 5f6d5dccbf
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/component: apiserver
+          pod-template-hash: 5f6d5dccbf
+      spec:
+        containers:
+        - args:
+          - --event-bus-url=nats://nats.sympozium-system.svc:4222
+          image: ghcr.io/alexsjones/sympozium/apiserver:v0.0.42
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: http
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: apiserver
+          ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: http
+              scheme: HTTP
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        serviceAccount: sympozium-apiserver
+        serviceAccountName: sympozium-apiserver
+        terminationGracePeriodSeconds: 30
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "1"
+      deployment.kubernetes.io/max-replicas: "2"
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      control-plane: controller-manager
+      pod-template-hash: 7c44b48b9
+    name: sympozium-controller-manager-7c44b48b9
+    namespace: sympozium-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        control-plane: controller-manager
+        pod-template-hash: 7c44b48b9
+    template:
+      metadata:
+        annotations:
+          kubectl.kubernetes.io/default-container: manager
+        creationTimestamp: null
+        labels:
+          control-plane: controller-manager
+          pod-template-hash: 7c44b48b9
+      spec:
+        containers:
+        - args:
+          - --leader-elect
+          env:
+          - name: NATS_URL
+            value: nats://nats.sympozium-system.svc:4222
+          image: ghcr.io/alexsjones/sympozium/controller:v0.0.42
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /healthz
+              port: health
+              scheme: HTTP
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 1
+          name: manager
+          ports:
+          - containerPort: 8081
+            name: health
+            protocol: TCP
+          - containerPort: 8080
+            name: metrics
+            protocol: TCP
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /readyz
+              port: health
+              scheme: HTTP
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 1
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        serviceAccount: sympozium-controller-manager
+        serviceAccountName: sympozium-controller-manager
+        terminationGracePeriodSeconds: 10
+- apiVersion: apps/v1
+  kind: ReplicaSet
+  metadata:
+    annotations:
+      deployment.kubernetes.io/desired-replicas: "2"
+      deployment.kubernetes.io/max-replicas: "3"
+      deployment.kubernetes.io/revision: "1"
+    labels:
+      app.kubernetes.io/component: webhook
+      pod-template-hash: bc8c87f67
+    name: sympozium-webhook-bc8c87f67
+    namespace: sympozium-system
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app.kubernetes.io/component: webhook
+        pod-template-hash: bc8c87f67
+    template:
+      metadata:
+        creationTimestamp: null
+        labels:
+          app.kubernetes.io/component: webhook
+          pod-template-hash: bc8c87f67
+      spec:
+        containers:
+        - image: ghcr.io/alexsjones/sympozium/webhook:v0.0.42
+          imagePullPolicy: IfNotPresent
+          name: webhook
+          ports:
+          - containerPort: 9443
+            name: webhook
+            protocol: TCP
+          resources:
+            limits:
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+              - ALL
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+          - mountPath: /tmp/k8s-webhook-server/serving-certs
+            name: cert
+            readOnly: true
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext:
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
+        serviceAccount: sympozium-controller-manager
+        serviceAccountName: sympozium-controller-manager
+        terminationGracePeriodSeconds: 30
+        volumes:
+        - name: cert
+          secret:
+            defaultMode: 420
+            secretName: sympozium-webhook-cert
+kind: List
+metadata: {}
