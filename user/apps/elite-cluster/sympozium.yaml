@@ -5,14 +5,14 @@ metadata:
   name: sympozium
   namespace: argocd 
 spec:
+  project: default
   destination:
     namespace: sympozium-system
     server: https://kubernetes.default.svc
-  project: default
   source:
-    repoURL: 'https://github.com/todaywasawesome/elite-cluster'
+    path: charts/sympozium
+    repoURL: https://github.com/AlexsJones/sympozium/
     targetRevision: HEAD
-    path: user/manifests/sympozium/elite-cluster
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
