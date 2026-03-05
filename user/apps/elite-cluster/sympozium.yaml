@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: charts/sympozium
-    repoURL: https://github.com/AlexsJones/sympozium/
+    repoURL: https://github.com/AlexsJones/sympozium.git
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
