@@ -542,6 +542,7 @@ openclaw:
         # @schema type:string;default:5Gi
         # -- PVC storage size
         size: 5Gi
+        storageClass: longhorn
         advancedMounts:
           main:
             init-config:
