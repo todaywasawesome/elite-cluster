@@ -16,3 +16,9 @@ spec:
       key: "OpenClaw"
       # 1password-field
       property: openclaw.json
+  - secretKey: openclaw-env-secret
+    remoteRef:
+      # 1password-entry-name
+      key: "OpenClaw"
+      # 1password-field
+      property: OPENCLAW_GATEWAY_TOKEN

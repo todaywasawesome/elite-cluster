@@ -18,3 +18,9 @@ spec:
     syncOptions:
     - CreateNamespace=true
     - ServerSideApply=true
+  ignoreDifferences:
+    - group: ""
+      kind: ConfigMap
+      name: openclaw
+      jsonPointers:
+        - /data
