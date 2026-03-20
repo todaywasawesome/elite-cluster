@@ -16,9 +16,15 @@ spec:
       key: "OpenClaw"
       # 1password-field
       property: openclaw.json
+      conversionStrategy: Default	
+      decodingStrategy: None
+      metadataPolicy: None
   - secretKey: openclaw-env-secret
     remoteRef:
       # 1password-entry-name
       key: "OpenClaw"
       # 1password-field
       property: OPENCLAW_GATEWAY_TOKEN
+      conversionStrategy: Default	
+      decodingStrategy: None
+      metadataPolicy: None
