@@ -3,7 +3,7 @@ name: openclaw
 description: OpenClaw deployment for my-cluster
 type: application
 version: 1.0.0
-appVersion: "2026.3.13"
+appVersion: "2026.3.13-1"
 
 dependencies:
   - name: openclaw
