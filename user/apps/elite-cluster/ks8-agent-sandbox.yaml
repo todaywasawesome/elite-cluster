@@ -1,0 +1,19 @@
+# app-1password-connect.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ks8-agent-sandbox
+  namespace: argocd 
+spec:
+  project: default
+  destination:
+    namespace: agent-sandbox-system
+    server: https://kubernetes.default.svc
+  source:
+    path: user/manifests/ks8-agent-sandbox/elite-cluster
+    repoURL: https://github.com/todaywasawesome/elite-cluster.git
+    targetRevision: HEAD
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true

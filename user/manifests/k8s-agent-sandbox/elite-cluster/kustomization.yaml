@@ -1,0 +1,6 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+# - https://github.com/kubernetes-sigs/agent-sandbox/releases/download/v0.2.1/manifest.yaml # Not needed as extensions includes all the base resources
+- https://github.com/kubernetes-sigs/agent-sandbox/releases/download/v0.2.1/extensions.yaml
