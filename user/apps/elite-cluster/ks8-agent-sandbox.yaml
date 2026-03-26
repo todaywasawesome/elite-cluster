@@ -10,9 +10,10 @@ spec:
     namespace: agent-sandbox-system
     server: https://kubernetes.default.svc
   source:
-    path: user/manifests/ks8-agent-sandbox/elite-cluster
-    repoURL: https://github.com/todaywasawesome/elite-cluster.git
+    path: user/manifests/k8s-agent-sandbox/elite-cluster
+    repoURL: 'https://github.com/todaywasawesome/elite-cluster/'
     targetRevision: HEAD
+  project: elite-cluster
   syncPolicy:
     syncOptions:
     - CreateNamespace=true
