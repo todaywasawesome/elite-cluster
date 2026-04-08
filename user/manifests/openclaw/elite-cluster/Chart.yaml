@@ -3,9 +3,9 @@ name: openclaw
 description: OpenClaw deployment for my-cluster
 type: application
 version: 1.0.0
-appVersion: "2026.3.13-1"
+appVersion: "2026.4.8"
 
 dependencies:
   - name: openclaw
-    version: 1.5.5
+    version: 1.5.14
     repository: https://serhanekicii.github.io/openclaw-helm
