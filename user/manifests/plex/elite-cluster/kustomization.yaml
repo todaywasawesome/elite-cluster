@@ -17,7 +17,7 @@ patches:
         spec:
           containers:
           - name: plex
-            image: linuxserver/plex:1.42.2
+            image: linuxserver/plex:1.43.1
 - patch: |-
     apiVersion: apps/v1
     kind: Deployment
@@ -40,4 +40,4 @@ patches:
         spec:
           containers:
           - name: plex-worker
-            image: linuxserver/plex:1.42.2
+            image: linuxserver/plex:1.43.1
