@@ -6,6 +6,7 @@
    labels:
      app: sonarr
  spec:
+   revisionHistoryLimit: 3
    replicas: 1
    selector:
       matchLabels:
