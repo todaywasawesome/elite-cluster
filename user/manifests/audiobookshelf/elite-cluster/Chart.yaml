@@ -1,0 +1,9 @@
+apiVersion: v2
+name: bookshelf
+description: Umbrella chart for audiobookshelf using the k8s-home-lab/audiobookshelf chart as a dependency
+type: application
+version: 0.1.0
+dependencies:
+  - name: audiobookshelf
+    version: 2.0.1
+    repository: https://k8s-home-lab.github.io/helm-charts/

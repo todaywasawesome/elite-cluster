@@ -1,0 +1,28 @@
+audiobookshelf:
+  env:
+    TZ: America/Denver
+
+  service:
+    main:
+      type: LoadBalancer
+      ports:
+        http:
+          port: 80
+
+  persistence:
+    config:
+      enabled: true
+      mountPath: /config
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+      size: 5Gi
+    metadata:
+      enabled: true
+      mountPath: /metadata
+      storageClass: longhorn
+      accessMode: ReadWriteOnce
+      size: 10Gi
+    media:
+      enabled: true
+      mountPath: /audiobooks
+      existingClaim: media
