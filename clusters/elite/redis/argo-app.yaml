@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-in-cluster-redis
+  namespace: argocd
+  labels:
+    app.kubernetes.io/managed-by: deploystudio
+    deploystudio/app: redis
+    deploystudio/version: 28.0.15
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/todaywasawesome/elite-cluster
+    targetRevision: main
+    path: clusters/elite/redis
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: redis
+  syncPolicy: {}
