@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: headlamp-in-cluster-headlamp
+  namespace: argocd
+  labels:
+    app.kubernetes.io/managed-by: deploystudio
+    deploystudio/app: headlamp
+    deploystudio/version: 0.45.0
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/todaywasawesome/elite-cluster
+    targetRevision: main
+    path: clusters/elite/headlamp
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: headlamp
+  syncPolicy:
+    automated:
+      selfHeal: true
