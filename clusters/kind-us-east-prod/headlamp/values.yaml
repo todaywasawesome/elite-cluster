@@ -1,0 +1,7 @@
+headlamp:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+  persistentVolumeClaim:
+    accessModes:
+      - ReadWriteOnce
