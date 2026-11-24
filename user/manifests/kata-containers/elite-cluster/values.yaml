@@ -1,0 +1,17 @@
+kata-deploy:
+  # k3s embeds containerd. kata-deploy adds a drop-in that k3s imports, so the config
+  # survives k3s upgrades; it refuses to install, changing nothing, if k3s doesn't import it.
+  k8sDistribution: k3s
+
+  # Install ends by restarting k3s on the node. One node at a time, so the API server
+  # (elite1) and the other two nodes are never restarting together. Running pods stay up.
+  job:
+    parallelism: 1
+
+  # Only the default shim (runtime-rs + QEMU). RuntimeClass "kata" selects it.
+  shims:
+    disableAll: true
+    qemu-runtime-rs:
+      enabled: true
+  runtimeClasses:
+    createDefault: true
