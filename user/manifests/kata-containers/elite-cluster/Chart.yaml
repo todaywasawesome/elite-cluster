@@ -1,0 +1,11 @@
+apiVersion: v2
+name: kata-containers
+description: Kata Containers runtime (kata-deploy) umbrella chart
+type: application
+version: 1.0.0
+appVersion: "4.4.0"
+
+dependencies:
+  - name: kata-deploy
+    version: 4.4.0
+    repository: oci://ghcr.io/kata-containers/kata-deploy-charts
