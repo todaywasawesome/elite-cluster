@@ -16,6 +16,10 @@ gha-runner-scale-set:
   # that is deleted afterwards.
   template:
     spec:
+      # Each job runs in its own Kata VM with its own kernel, so a kernel exploit in a job
+      # lands in a throwaway guest, not on the node. Also lets Chromium (CEF) create the
+      # user namespaces its sandbox needs, inside the guest only.
+      runtimeClassName: kata
       automountServiceAccountToken: false
       enableServiceLinks: false
       priorityClassName: clarastack-ci-low
