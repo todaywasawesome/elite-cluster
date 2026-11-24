@@ -12,6 +12,8 @@ apiVersion: v1
 kind: ResourceQuota
 metadata:
   name: clarastack-ci
+# Quota counts the Kata RuntimeClass overhead (250m CPU, 320Mi per pod) on top of the
+# container limits: two runners use 6.5 CPU and about 20.6Gi.
 spec:
   hard:
     pods: "4"
