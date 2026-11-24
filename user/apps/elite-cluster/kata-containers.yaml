@@ -4,6 +4,9 @@ kind: Application
 metadata:
   name: kata-containers
   namespace: argocd
+  # Cascading delete, so deleting the app runs the chart's uninstall hooks on the nodes.
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
     namespace: kata-system

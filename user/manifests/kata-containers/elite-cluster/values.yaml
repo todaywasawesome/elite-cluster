@@ -7,6 +7,11 @@ kata-deploy:
   # (elite1) and the other two nodes are never restarting together. Running pods stay up.
   job:
     parallelism: 1
+    # The dispatcher is the only part that holds a token: keep it on the control plane.
+    dispatcherNodeSelector:
+      node-role.kubernetes.io/control-plane: "true"
+    dispatcherImage:
+      reference: ghcr.io/kata-containers/k8s-job-dispatcher@sha256:b2540bc9c85d52c4ad96b82d4b2579d2169069f2f77725df50e0278373c1927e  # 0.3.0
 
   # Only the default shim (runtime-rs + QEMU). RuntimeClass "kata" selects it.
   shims:
@@ -15,3 +20,9 @@ kata-deploy:
       enabled: true
   runtimeClasses:
     createDefault: true
+
+  # Images pinned by digest. kubectl runs the cleanup and verification jobs.
+  image:
+    reference: quay.io/kata-containers/kata-deploy@sha256:f72fe199568540ced0bab9f593ba6a758afe0b46c4bb523938881df01d5fb873  # 4.4.0
+  kubectlImage:
+    reference: quay.io/kata-containers/kubectl@sha256:0ad855cd8f30f9d9c6cd4f8b79926e9df42d5cbc34331979d2cbf359e7b7e872  # v1.37.2
