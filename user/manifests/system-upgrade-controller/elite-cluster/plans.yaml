@@ -1,0 +1,53 @@
+# k3s upgrades, one node at a time, Sunday 02:00-05:00 Mountain.
+# The channel follows the v1.36 minor line: patch releases arrive on their own;
+# moving to a new minor is a deliberate change to the channel URL here.
+#
+# Nodes are cordoned, not drained. Restarting k3s leaves running pods in place, and a
+# drain would hang on PDBs that allow no disruptions (Longhorn instance managers,
+# karpenter, redis-temp, the Octopus agent).
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: server-plan
+spec:
+  channel: https://update.k3s.io/v1-release/channels/v1.36
+  concurrency: 1
+  cordon: true
+  nodeSelector:
+    matchExpressions:
+    - key: node-role.kubernetes.io/control-plane
+      operator: In
+      values: ["true"]
+  serviceAccountName: system-upgrade
+  upgrade:
+    image: rancher/k3s-upgrade
+  window:
+    days: [sunday]
+    startTime: "02:00"
+    endTime: "05:00"
+    timeZone: America/Denver
+---
+apiVersion: upgrade.cattle.io/v1
+kind: Plan
+metadata:
+  name: agent-plan
+spec:
+  channel: https://update.k3s.io/v1-release/channels/v1.36
+  concurrency: 1
+  cordon: true
+  nodeSelector:
+    matchExpressions:
+    - key: node-role.kubernetes.io/control-plane
+      operator: DoesNotExist
+  # Agents wait until the server is upgraded.
+  prepare:
+    image: rancher/k3s-upgrade
+    args: ["prepare", "server-plan"]
+  serviceAccountName: system-upgrade
+  upgrade:
+    image: rancher/k3s-upgrade
+  window:
+    days: [sunday]
+    startTime: "02:00"
+    endTime: "05:00"
+    timeZone: America/Denver

@@ -1,8 +1,15 @@
-# System upgrade controller kustomization.yml
+# system-upgrade-controller, plus the Plans that keep k3s current.
+# Install per https://docs.k3s.io/upgrades/automated: the upstream release manifest and CRD.
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: system-upgrade
 
 resources:
-- github.com/rancher/system-upgrade-controller/?ref=v0.14.2
-# - github.com/metallb/metallb/config/native?ref=v0.13.9
+- https://github.com/rancher/system-upgrade-controller/releases/download/v0.21.1/crd.yaml
+- https://github.com/rancher/system-upgrade-controller/releases/download/v0.21.1/system-upgrade-controller.yaml
+- plans.yaml
+
+images:
+- name: rancher/system-upgrade-controller
+  newTag: v0.21.1
+  digest: sha256:14636476f2801b9b6556dd4942f3e2371e8ac9e2b33986d5a59b742bc35f5152
