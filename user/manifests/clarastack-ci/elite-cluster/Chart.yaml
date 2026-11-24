@@ -1,0 +1,11 @@
+apiVersion: v2
+name: clarastack-ci
+description: Ephemeral GitHub Actions runner pods for Clarastack (controlplane, desktop)
+type: application
+version: 1.0.0
+appVersion: "0.15.1"
+
+dependencies:
+  - name: gha-runner-scale-set
+    version: 0.15.1
+    repository: oci://ghcr.io/actions/actions-runner-controller-charts

@@ -5,21 +5,14 @@ metadata:
   name: arc-controller
   namespace: argocd
 spec:
-  project: default
   destination:
     namespace: arc-systems
     server: https://kubernetes.default.svc
-  sources:
-  - repoURL: https://github.com/actions/actions-runner-controller
-    targetRevision: gha-runner-scale-set-0.15.1
-    path: charts/gha-runner-scale-set-controller
-    helm:
-      releaseName: arc
-      valueFiles:
-      - $values/user/manifests/arc-controller/elite-cluster/values.yaml
-  - repoURL: https://github.com/todaywasawesome/elite-cluster
+  project: default
+  source:
+    repoURL: 'https://github.com/todaywasawesome/elite-cluster'
     targetRevision: HEAD
-    ref: values
+    path: user/manifests/arc-controller/elite-cluster
   syncPolicy:
     automated: {}
     syncOptions:

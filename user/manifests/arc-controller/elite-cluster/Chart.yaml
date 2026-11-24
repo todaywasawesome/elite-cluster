@@ -1,0 +1,11 @@
+apiVersion: v2
+name: arc-controller
+description: GitHub Actions Runner Controller (scale-set mode) umbrella chart
+type: application
+version: 1.0.0
+appVersion: "0.15.1"
+
+dependencies:
+  - name: gha-runner-scale-set-controller
+    version: 0.15.1
+    repository: oci://ghcr.io/actions/actions-runner-controller-charts
