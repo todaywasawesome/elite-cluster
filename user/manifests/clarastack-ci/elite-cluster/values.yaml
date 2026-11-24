@@ -28,9 +28,9 @@ gha-runner-scale-set:
           type: RuntimeDefault
       containers:
       - name: runner
-        # Stock image for the first test; a Clarastack image with the build tools
-        # preinstalled replaces it. Keep it current: GitHub refuses runners that are too old.
-        image: ghcr.io/actions/actions-runner:2.338.2
+        # Clarastack runner image (controlplane ci/runner-image): Ubuntu 22.04, the runner,
+        # build tools and Xvfb preinstalled, no sudo. Pinned by digest; bump with the image.
+        image: ghcr.io/clarastack-com/ci-runner-linux:2.338.2-20261123@sha256:a006d464339e5def23fc4678e687026e17fbb7468a89a0f2a90a3343b0ee12fc
         command: ["/home/runner/run.sh"]
         securityContext:
           allowPrivilegeEscalation: false
