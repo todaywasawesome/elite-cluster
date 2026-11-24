@@ -1,0 +1,34 @@
+# CI jobs run code from pushed branches and from third-party packages. Fence them off
+# from the home network and the cluster: no inbound traffic; outbound only DNS and the
+# public internet.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: runners-internet-only
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+  ingress: []
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+      podSelector:
+        matchLabels:
+          k8s-app: kube-dns
+    ports:
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 53
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+        - 10.0.0.0/8       # home LAN, k3s pods (10.42/16) and services (10.43/16)
+        - 172.16.0.0/12
+        - 192.168.0.0/16
+        - 100.64.0.0/10    # CGNAT / Tailscale
+        - 169.254.0.0/16   # link-local
+        - 127.0.0.0/8

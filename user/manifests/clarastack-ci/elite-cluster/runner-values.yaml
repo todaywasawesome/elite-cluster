@@ -1,0 +1,46 @@
+githubConfigUrl: https://github.com/clarastack-com
+# Made by manifests/external-secret.yaml from 1Password.
+githubConfigSecret: clarastack-arc-app
+runnerGroup: homelab
+# Workflows select this with the repo variable LINUX_RUNNER=clarastack-homelab-linux.
+runnerScaleSetName: clarastack-homelab-linux
+minRunners: 0
+maxRunners: 2
+
+controllerServiceAccount:
+  namespace: arc-systems
+  name: arc-gha-rs-controller
+
+# No containerMode: no Docker-in-Docker, nothing privileged. Every job gets a new pod
+# that is deleted afterwards.
+template:
+  spec:
+    automountServiceAccountToken: false
+    enableServiceLinks: false
+    priorityClassName: clarastack-ci-low
+    securityContext:
+      runAsNonRoot: true
+      runAsUser: 1001
+      runAsGroup: 1001
+      fsGroup: 1001
+      seccompProfile:
+        type: RuntimeDefault
+    containers:
+    - name: runner
+      # Stock image for the first test; a Clarastack image with the build tools
+      # preinstalled replaces it. Keep it current: GitHub refuses runners that are too old.
+      image: ghcr.io/actions/actions-runner:2.338.2
+      command: ["/home/runner/run.sh"]
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+      resources:
+        requests:
+          cpu: "2"
+          memory: 6Gi
+          ephemeral-storage: 20Gi
+        limits:
+          cpu: "3"
+          memory: 10Gi
+          ephemeral-storage: 40Gi

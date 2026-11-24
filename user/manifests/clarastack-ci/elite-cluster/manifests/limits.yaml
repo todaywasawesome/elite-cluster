@@ -1,0 +1,20 @@
+# CI must never crowd out the rest of the cluster.
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: clarastack-ci-low
+value: -100
+preemptionPolicy: Never
+globalDefault: false
+description: Clarastack CI runner pods; evicted before anything else.
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: clarastack-ci
+spec:
+  hard:
+    pods: "4"
+    limits.cpu: "7"
+    limits.memory: 22Gi
+    requests.ephemeral-storage: 50Gi

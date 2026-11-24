@@ -1,0 +1,31 @@
+# Clarastack CI: ephemeral GitHub Actions runner pods for clarastack-com/controlplane and
+# clarastack-com/desktop (org runner group "homelab"). Synthetic data only, no secrets
+# in jobs (Clarastack decision D-05). Depends on arc-controller for the CRDs.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clarastack-ci
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    namespace: clarastack-ci
+    server: https://kubernetes.default.svc
+  sources:
+  - repoURL: https://github.com/actions/actions-runner-controller
+    targetRevision: gha-runner-scale-set-0.15.1
+    path: charts/gha-runner-scale-set
+    helm:
+      releaseName: clarastack-homelab-linux
+      valueFiles:
+      - $values/user/manifests/clarastack-ci/elite-cluster/runner-values.yaml
+  - repoURL: https://github.com/todaywasawesome/elite-cluster
+    targetRevision: HEAD
+    ref: values
+    path: user/manifests/clarastack-ci/elite-cluster/manifests
+  syncPolicy:
+    automated: {}
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    - SkipDryRunOnMissingResource=true
